@@ -16,8 +16,9 @@ public class AgenceController {
        Agence agence = agenceService.createAgence(name);
         return agence;
     }
-    @GetMapping("/agence/{id}")
-    public Agence getAgenceById(@PathVariable long id){
+    @GetMapping("/agence/{id}/")
+    @ResponseBody
+    public Agence getAgenceById(@PathVariable Long id){
         Agence agence = agenceService.findById(id);
         return agence;
     }

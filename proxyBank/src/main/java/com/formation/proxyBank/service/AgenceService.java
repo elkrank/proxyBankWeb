@@ -16,7 +16,7 @@ public class AgenceService {
         return agence;
     }
 
-    public Agence findById(long id) {
+    public Agence findById(Long id) {
         Agence agence = agenceRepository.getById(id);
         return agence;
     }

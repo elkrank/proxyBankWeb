@@ -1,5 +1,7 @@
 package com.formation.proxyBank.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
@@ -8,6 +10,7 @@ public class Agence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private LocalDate dateDeCreation =  LocalDate.now();
     private String agenceName;
 
