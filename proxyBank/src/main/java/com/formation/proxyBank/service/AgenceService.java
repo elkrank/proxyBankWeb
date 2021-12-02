@@ -15,4 +15,9 @@ public class AgenceService {
         agenceRepository.save(agence);
         return agence;
     }
+
+    public Agence findById(long id) {
+        Agence agence = agenceRepository.getById(id);
+        return agence;
+    }
 }
