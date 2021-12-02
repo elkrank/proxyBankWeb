@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("Conseiller")
 public class Conseiller extends Employe {
+	
 //	@OneToMany(mappedBy = "client")
 //	private  List<Client> clients = new ArrayList<Client>();
 
