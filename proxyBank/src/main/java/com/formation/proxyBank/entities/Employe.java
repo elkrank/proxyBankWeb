@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -15,7 +16,9 @@ public abstract class Employe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank
 	private String nom;
+	@NotBlank
 	private String prenom;
 	
 	public Employe(String nom, String prenom) {
