@@ -25,4 +25,8 @@ public class CarteService {
 	public Carte getCarteById(Long id) {
 		return carteRepository.getById(id);
 	}
+	
+	public void deleteCarte(Long id) {
+		carteRepository.deleteById(id);
+	}
 }
