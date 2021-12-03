@@ -45,7 +45,9 @@ import com.formation.proxyBank.service.ClientService;
 			clientService.deleteClient(id);
 		}
 		
-
-		
-
+		@PutMapping("/clients/{id}")
+		public Client updateClient (@PathVariable Long id, @RequestBody Client ClientUpdate) {
+			Client client = clientService.updateClient(id, ClientUpdate);
+			return client;
+		}
 }
