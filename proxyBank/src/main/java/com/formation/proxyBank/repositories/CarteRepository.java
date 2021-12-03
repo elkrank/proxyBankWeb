@@ -8,4 +8,6 @@ import com.formation.proxyBank.entities.Carte;
 @Repository
 public interface CarteRepository extends JpaRepository<Carte, String>{
 
+	Carte getById(Long id);
+
 }
