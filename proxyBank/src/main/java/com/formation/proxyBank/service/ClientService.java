@@ -39,6 +39,16 @@ public class ClientService {
 		return "Le client a bien été supprimé";
 	}
 
+	public Client updateClient(Long id, Client ClientUpdate) {
+		Client client = clientRepository.getById(id);
+		client.setAdresse(ClientUpdate.getAdresse());
+		client.setNom(ClientUpdate.getNom());
+		client.setPrenom(ClientUpdate.getPrenom());
+		client.setCodePostal(ClientUpdate.getCodePostal());
+		client.setTelephone(ClientUpdate.getTelephone());
+		return clientRepository.save(client);
+	}
+
 	
 
 }
