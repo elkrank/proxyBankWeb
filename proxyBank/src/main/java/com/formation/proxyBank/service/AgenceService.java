@@ -7,6 +7,7 @@ import com.formation.proxyBank.repositories.AgenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,7 +39,16 @@ public class AgenceService {
     public Agence addEmployeToAgence(Long id_agence, Long idEmploye) {
         Agence agence = agenceRepository.getById(id_agence);
         Optional<Conseiller> employe = conseillerService.findConseillerById(idEmploye);
-        agence.getListEmploye().add(employe.get());
+       agence.getListEmploye().add(employe.get());
+       agenceRepository.save(agence);
         return  agence;
+    }
+
+    public void deleteAgence(Long id) {
+        agenceRepository.delete(agenceRepository.getById(id));
+    }
+
+    public List<Agence> getAllAgence() {
+        return agenceRepository.findAll();
     }
 }

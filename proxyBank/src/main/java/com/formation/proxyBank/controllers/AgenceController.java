@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/proxybank")
 public class AgenceController {
@@ -28,9 +30,18 @@ public class AgenceController {
         Agence agence = agenceService.updateAgence(id,agenceP);
         return agence;
     }
-    @PostMapping("/agences/{id_agence}/ajouterEmploye/?idEmploye")
-    public Agence addEmployeToAgence(@PathVariable Long id_agence,Long idEmploye){
+    @PostMapping("/agences/{id_agence}/ajouterEmploye/{idEmploye}")
+    public Agence addEmployeToAgence(@PathVariable Long id_agence,@PathVariable Long idEmploye){
     Agence agence = agenceService.addEmployeToAgence(id_agence,idEmploye);
     return agence;
+    }
+    @DeleteMapping("/agences/{id}")
+    public void deleteAgence(@PathVariable Long id ){
+        agenceService.deleteAgence(id);
+    }
+    @GetMapping ("/agences")
+    public List<Agence> getAllAgence(){
+        List<Agence> listAgence = agenceService.getAllAgence();
+        return listAgence;
     }
 }
