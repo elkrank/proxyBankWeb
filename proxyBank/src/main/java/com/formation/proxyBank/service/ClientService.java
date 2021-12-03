@@ -33,4 +33,12 @@ public class ClientService {
 		Optional<Client> client = clientRepository.findById(id);
 		return client.get();
 	}
+	
+	public String deleteClient(Long id)  {
+		clientRepository.deleteById(id);
+		return "Le client a bien été supprimé";
+	}
+
+	
+
 }
