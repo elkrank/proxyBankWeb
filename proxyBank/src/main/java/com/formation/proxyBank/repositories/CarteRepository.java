@@ -10,4 +10,6 @@ public interface CarteRepository extends JpaRepository<Carte, String>{
 
 	Carte getById(Long id);
 
+	void deleteById(Long id);
+
 }
