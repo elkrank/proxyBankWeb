@@ -14,4 +14,6 @@ public interface ClientRepository extends JpaRepository<Client, Integer>{
 
 	void deleteById(Long id);
 
+	Client getById(Long id);
+
 }
