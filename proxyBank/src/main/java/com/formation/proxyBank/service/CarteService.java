@@ -21,4 +21,8 @@ public class CarteService {
 		return carteRepository.save(carte);
 		
 	}
+
+	public Carte getCarteById(Long id) {
+		return carteRepository.getById(id);
+	}
 }
