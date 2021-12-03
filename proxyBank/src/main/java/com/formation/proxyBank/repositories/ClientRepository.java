@@ -12,4 +12,6 @@ public interface ClientRepository extends JpaRepository<Client, Integer>{
 
 	Optional<Client> findById(Long id);
 
+	void deleteById(Long id);
+
 }
