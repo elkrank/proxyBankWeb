@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 public class Agence {
     @Id
@@ -13,6 +16,8 @@ public class Agence {
 
     private LocalDate dateDeCreation =  LocalDate.now();
     private String agenceName;
+    @OneToMany
+    private List<Employe> listEmploye = new ArrayList<Employe>();
 
     public String getAgenceName() {
         return agenceName;
