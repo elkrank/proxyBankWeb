@@ -1,11 +1,13 @@
 package com.formation.proxyBank.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Client {
@@ -17,12 +19,14 @@ public class Client {
 	private String adresse;
 	private int codePostal;
 	private String telephone;
-	
+
+
 	@ManyToOne
 	private Conseiller conseiller;
 
-//	private CompteCourrant compteCourrant;
-//	private CompteEpargne compteEpargne;
+	@OneToMany(mappedBy = "client")
+	private List<Compte> comptes = new ArrayList<Compte>();
+
 
 	public Long getId() {
 		return id;
@@ -78,6 +82,15 @@ public class Client {
 
 	public void setConseiller(Conseiller conseiller) {
 		this.conseiller = conseiller;
+	}
+
+
+
+	public List<Compte> getComptes() {
+		return comptes;
+	}
+	public void setComptes(List<Compte> comptes) {
+		this.comptes = comptes;
 	}
 
 	@Override

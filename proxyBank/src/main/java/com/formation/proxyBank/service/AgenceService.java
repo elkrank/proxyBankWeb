@@ -1,6 +1,7 @@
 package com.formation.proxyBank.service;
 
 import com.formation.proxyBank.entities.Agence;
+import com.formation.proxyBank.entities.Employe;
 import com.formation.proxyBank.repositories.AgenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,12 @@ public class AgenceService {
     agence.setDateDeCreation(agence.getDateDeCreation());
     return agence;
 
+    }
+    @Autowired
+    ConseillerService conseillerService;
+    public Agence addEmployeToAgence(Long id_agence, Long idEmploye) {
+        Agence agence = agenceRepository.getById(id_agence);
+        Employe employe = conseillerService.
+        agence.getListEmploye().add()
     }
 }

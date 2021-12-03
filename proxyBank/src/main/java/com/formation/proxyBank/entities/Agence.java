@@ -19,6 +19,14 @@ public class Agence {
     @OneToMany
     private List<Employe> listEmploye = new ArrayList<Employe>();
 
+    public List<Employe> getListEmploye() {
+        return listEmploye;
+    }
+
+    public void setListEmploye(List<Employe> listEmploye) {
+        this.listEmploye = listEmploye;
+    }
+
     public String getAgenceName() {
         return agenceName;
     }
@@ -49,6 +57,7 @@ public class Agence {
                 "id=" + id +
                 ", dateDeCreation=" + dateDeCreation +
                 ", agenceName='" + agenceName + '\'' +
+                ", listEmploye=" + listEmploye +
                 '}';
     }
 }
