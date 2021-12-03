@@ -15,10 +15,12 @@ public class Client {
 	private String adresse;
 	private int codePostal;
 	private String telephone;
-
-
+	
 	@ManyToOne
 	private Conseiller conseiller;
+	
+	@OneToMany(mappedBy = "client")
+	private List<Carte> cartes = new ArrayList<Carte>();
 
 	@OneToMany(mappedBy = "client")
 	private List<Compte> comptes = new ArrayList<Compte>();
