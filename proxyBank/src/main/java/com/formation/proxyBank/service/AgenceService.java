@@ -20,4 +20,13 @@ public class AgenceService {
         Agence agence = agenceRepository.getById(id);
         return agence;
     }
+
+    public Agence updateAgence(Long id,Agence agenceP) {
+    Agence agence = agenceRepository.getById(id);
+    agence.setAgenceName(agenceP.getAgenceName());
+    agence.setId(agence.getId());
+    agence.setDateDeCreation(agence.getDateDeCreation());
+    return agence;
+
+    }
 }

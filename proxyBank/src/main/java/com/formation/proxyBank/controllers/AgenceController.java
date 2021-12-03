@@ -22,4 +22,9 @@ public class AgenceController {
         Agence agence = agenceService.findById(id);
         return agence;
     }
+    @PutMapping("/agence/{id}")
+    public Agence updateAgence(@PathVariable Long id,@RequestBody Agence agenceP ){
+        Agence agence = agenceService.updateAgence(id,agenceP);
+        return agence;
+    }
 }
