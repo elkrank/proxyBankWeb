@@ -16,7 +16,7 @@ import com.formation.proxyBank.entities.Conseiller;
 import com.formation.proxyBank.service.ConseillerService;
 
 @RestController
-@RequestMapping("/proxybank/conseillers")
+@RequestMapping("/conseillers")
 public class ConseillerController {
 	@Autowired
 	ConseillerService conseillerService;
