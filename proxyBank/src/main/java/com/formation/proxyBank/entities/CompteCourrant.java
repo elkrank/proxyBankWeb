@@ -1,7 +1,5 @@
 package com.formation.proxyBank.entities;
 
-import java.time.LocalDate;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 

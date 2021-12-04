@@ -9,33 +9,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-@DiscriminatorColumn(name="type_compte")
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "type_compte")
 public abstract class Compte {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private int numeroDeCompte;
-	private double solde;
+	private Integer numeroDeCompte;
+	private Double solde;
 	private LocalDate dateOuverture;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idClient")
+	@JsonIgnore
 	private Client client;
-	
+
 	public Compte() {
 		super();
 	}
 
-	public Compte(int numeroDeCompte, double solde, Client client) {
+	public Compte(Integer numeroDeCompte, Double solde, Client client) {
 		super();
 		this.numeroDeCompte = numeroDeCompte;
 		this.solde = solde;
-		this.dateOuverture = LocalDate.now() ;
+		this.dateOuverture = LocalDate.now();
 		this.client = client;
 	}
 
@@ -47,19 +48,19 @@ public abstract class Compte {
 		this.id = id;
 	}
 
-	public int getNumeroDeCompte() {
+	public Integer getNumeroDeCompte() {
 		return numeroDeCompte;
 	}
 
-	public void setNumeroDeCompte(int numeroDeCompte) {
+	public void setNumeroDeCompte(Integer numeroDeCompte) {
 		this.numeroDeCompte = numeroDeCompte;
 	}
 
-	public double getSolde() {
+	public Double getSolde() {
 		return solde;
 	}
 
-	public void setSolde(double solde) {
+	public void setSolde(Double solde) {
 		this.solde = solde;
 	}
 
@@ -84,8 +85,5 @@ public abstract class Compte {
 		return "Compte [id=" + id + ", numeroDeCompte=" + numeroDeCompte + ", solde=" + solde + ", dateOuverture="
 				+ dateOuverture + ", client=" + client + "]";
 	}
-	
-	
-	
 
 }
