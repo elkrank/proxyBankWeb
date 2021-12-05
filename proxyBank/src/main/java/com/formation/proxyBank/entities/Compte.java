@@ -30,6 +30,7 @@ public abstract class Compte {
 
 	public Compte() {
 		super();
+		this.dateOuverture = LocalDate.now();
 	}
 
 	public Compte(Integer numeroDeCompte, Double solde, Client client) {
