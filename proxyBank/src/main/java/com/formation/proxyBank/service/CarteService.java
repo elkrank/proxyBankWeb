@@ -1,13 +1,12 @@
 package com.formation.proxyBank.service;
 
-import com.formation.proxyBank.entities.Client;
-import com.formation.proxyBank.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.formation.proxyBank.dto.CarteDto;
 import com.formation.proxyBank.entities.Carte;
 import com.formation.proxyBank.repositories.CarteRepository;
+import com.formation.proxyBank.repositories.ClientRepository;
 
 
 @Service

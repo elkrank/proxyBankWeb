@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Client {
 	@Id
@@ -17,6 +19,7 @@ public class Client {
 	private String telephone;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Conseiller conseiller;
 	
 	@OneToMany(mappedBy = "client")

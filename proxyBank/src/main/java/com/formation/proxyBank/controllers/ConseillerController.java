@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.formation.proxyBank.entities.Conseiller;
@@ -46,5 +47,9 @@ public class ConseillerController {
 		conseillerService.updateConseiller(id, conseiller);
 	}
 	
+	@PostMapping("/{id_conseiller}/assignerClient")
+	public Optional<Conseiller> addClientToConseiller(@PathVariable Long id_conseiller, @RequestParam Long clientId) {
+		return conseillerService.addClientToConseiller( id_conseiller, clientId);
+	}
 
 }
