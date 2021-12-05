@@ -1,5 +1,6 @@
 package com.formation.proxyBank.service;
 
+import com.formation.proxyBank.entities.Compte;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,10 @@ public class CompteCourrantService {
 	public CompteCourrant creercompteCourrant(Integer numeroDeCompte, Double solde, Long idClient) {
 		CompteCourrant compteCourrant = new CompteCourrant(numeroDeCompte, solde, clientService.getOneClient(idClient));
 		return compteCourrantRepository.save(compteCourrant);
+	}
+	public CompteCourrant readCompteCourrant(Long id){
+		CompteCourrant compteCourrant = compteCourrantRepository.getById(id);
+		return compteCourrant;
 	}
 
 }
