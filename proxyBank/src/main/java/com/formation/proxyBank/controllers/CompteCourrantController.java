@@ -1,6 +1,8 @@
 package com.formation.proxyBank.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,5 +19,10 @@ public class CompteCourrantController {
 	@PostMapping
 	public CompteCourrant createCompteCourrant(Integer numeroDeCompte, Double solde, Long idClient) {
 		return compteCourrantService.creercompteCourrant(numeroDeCompte, solde, idClient);
+	}
+	
+	@DeleteMapping("/{id}")
+	public void deleteCompteCourrant(@PathVariable Long id) {
+		compteCourrantService.deleteCompteCourrant(id);
 	}
 }
