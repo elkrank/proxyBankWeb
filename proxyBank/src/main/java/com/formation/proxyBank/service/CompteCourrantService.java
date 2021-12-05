@@ -26,4 +26,9 @@ public class CompteCourrantService {
 		return compteCourrant;
 	}
 
+	public void deleteCompteCourrant(Long id) {
+		compteCourrantRepository.deleteById(id);
+		
+	}
+
 }

@@ -20,7 +20,7 @@ import com.formation.proxyBank.service.ClientService;
 
 
 	@RestController
-	@RequestMapping("/proxybank")
+	//@RequestMapping("/proxybank")
 	public class ClientController {
 		
 		@Autowired
