@@ -17,7 +17,14 @@ public class Carte {
 	private String numero;
 	@ManyToOne
 	private Client client;
-	
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
 	public Boolean getActive() {
 		return active;

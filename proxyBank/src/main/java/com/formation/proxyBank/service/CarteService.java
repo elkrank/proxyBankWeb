@@ -1,5 +1,7 @@
 package com.formation.proxyBank.service;
 
+import com.formation.proxyBank.entities.Client;
+import com.formation.proxyBank.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +14,17 @@ import com.formation.proxyBank.repositories.CarteRepository;
 public class CarteService {
 	
 	@Autowired CarteRepository carteRepository;
+	@Autowired
+	ClientRepository clientRepository;
 
 	public Carte createCarte(CarteDto dto) {
+
 		Carte carte = new Carte();
+		carte.setClient(dto.getClient());
 		carte.setNumero(dto.getNumero());
 		carte.setTypeCarte(dto.getTypeCarte());
-		
+
+
 		return carteRepository.save(carte);
 		
 	}
