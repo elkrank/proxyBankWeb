@@ -1,7 +1,10 @@
 package com.formation.proxyBank.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +27,15 @@ public class CompteCourrantController {
 	@GetMapping("/{id}")
 	public CompteCourrant readCompteCourrant(@PathVariable Long id){
 		return compteCourrantService.readCompteCourrant(id);
+		}
 
 	@DeleteMapping("/{id}")
 	public void deleteCompteCourrant(@PathVariable Long id) {
 		compteCourrantService.deleteCompteCourrant(id);
 	}
+	
+	@GetMapping
+	public List<CompteCourrant> getAllComptesCourrants() {
+		return compteCourrantService.getAllComptesCourrants();
+	} 
 }

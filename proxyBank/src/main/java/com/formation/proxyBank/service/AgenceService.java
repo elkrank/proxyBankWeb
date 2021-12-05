@@ -1,14 +1,14 @@
 package com.formation.proxyBank.service;
 
-import com.formation.proxyBank.entities.Agence;
-import com.formation.proxyBank.entities.Conseiller;
-import com.formation.proxyBank.entities.Employe;
-import com.formation.proxyBank.repositories.AgenceRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.formation.proxyBank.entities.Agence;
+import com.formation.proxyBank.entities.Conseiller;
+import com.formation.proxyBank.repositories.AgenceRepository;
 
 @Service
 public class AgenceService {

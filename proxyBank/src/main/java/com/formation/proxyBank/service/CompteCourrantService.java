@@ -1,6 +1,7 @@
 package com.formation.proxyBank.service;
 
-import com.formation.proxyBank.entities.Compte;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,10 @@ public class CompteCourrantService {
 
 	public void deleteCompteCourrant(Long id) {
 		compteCourrantRepository.deleteById(id);
+		
+	}
+	public List<CompteCourrant> getAllComptesCourrants() {
+		return compteCourrantRepository.findAll();
 		
 	}
 
