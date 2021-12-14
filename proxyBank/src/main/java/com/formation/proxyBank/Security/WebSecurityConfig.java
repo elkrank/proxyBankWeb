@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.wildcodeschool.spring.security.persistence.enums.RoleEnum;
+import com.formation.proxyBank.Security.RoleEnum;
 
 @Configuration
 @EnableWebSecurity
@@ -33,8 +33,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         	.antMatchers("/proxyBank").permitAll()
         	.antMatchers("/proxyBank/conseillers/**").hasAnyRole("ADMIN","DIRECTEUR")
         	.antMatchers("/proxyBank/conseillers/comptes/*/transfer/?numerocompteBeneficiaire").hasAnyRole("ADMIN","DIRECTEUR","CONSEILLER")
-        	
-        	//agences
         	.antMatchers("/proxyBank/agences").hasRole("ADMIN")
         	.antMatchers("/proxyBank/agences/*").hasRole("ADMIN")
         	.antMatchers("/proxyBank/agences/*/ajouterEmploye/?idEmploye").hasAnyRole("ADMIN", "DIRECTEUR")

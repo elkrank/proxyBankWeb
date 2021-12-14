@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -16,11 +17,20 @@ public abstract class Employe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	@NotBlank
 	private String nom;
+
 	@NotBlank
 	private String prenom;
-	
+
+	@NotBlank
+	@Email
+	private String email;
+
+	@NotBlank
+	private String mdp;
+	@NotBlank
 	public Employe(String nom, String prenom) {
 		super();
 		this.nom = nom;
