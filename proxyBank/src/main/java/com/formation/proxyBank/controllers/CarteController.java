@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,9 +22,9 @@ public class CarteController {
 	
 	@Autowired CarteService carteService;
 	
-	@PostMapping(value = "/cartes", consumes = "application/json") 
-		public Carte createCarte(@RequestBody CarteDto carteDto) {
-			return carteService.createCarte(carteDto);
+	@PostMapping("/cartes") 
+		public Carte createCarte(@RequestBody CarteDto carteDto, Long clientId) {
+			return carteService.createCarte(carteDto, clientId);
 		}
 	
 	@GetMapping("/cartes/{id}")
@@ -35,5 +36,10 @@ public class CarteController {
 	@DeleteMapping("/cartes/{id}")
 		public void deleteCarte(@PathVariable Long id) {
 			carteService.deleteCarte(id);
+	}
+	
+	@PutMapping("/cartes/{id}") 
+		public void modifyCarte(@PathVariable Long id, @RequestBody CarteDto carteDto) {
+			carteService.modifyCarte(id, carteDto);
 	}
 }

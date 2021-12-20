@@ -6,6 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.formation.proxyBank.service.ClientService;
+
 @Entity
 public class Carte {
 
@@ -15,15 +20,15 @@ public class Carte {
 	private Boolean active = true;
 	private String typeCarte;
 	private String numero;
-	@ManyToOne
-	private Client client;
+	
+	private Long idClient;
 
-	public Client getClient() {
-		return client;
+	public void setIdClient(Long idClient) {
+		this.idClient = idClient;
 	}
-
-	public void setClient(Client client) {
-		this.client = client;
+	
+	public Long getIdClient() {
+		return idClient;
 	}
 
 	public Boolean getActive() {

@@ -22,7 +22,7 @@ public class Client {
 	@JsonIgnore
 	private Conseiller conseiller;
 	
-	@OneToMany(mappedBy = "client")
+	@OneToMany(mappedBy = "idClient")
 	private List<Carte> cartes = new ArrayList<Carte>();
 
 	@OneToMany(mappedBy = "client")
