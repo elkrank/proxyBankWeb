@@ -39,7 +39,7 @@ public class AgenceService {
     public Agence addEmployeToAgence(Long id_agence, Long idEmploye) {
         Agence agence = agenceRepository.getById(id_agence);
         Optional<Conseiller> employe = conseillerService.findConseillerById(idEmploye);
-       agence.getListEmploye().add(employe.get());
+       agence.getListConseiller().add(employe.get());
        agenceRepository.save(agence);
         return  agence;
     }

@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Agence {
@@ -19,14 +20,25 @@ public class Agence {
     private LocalDate dateDeCreation =  LocalDate.now();
     private String agenceName;
     @OneToMany
-    private List<Employe> listEmploye = new ArrayList<Employe>();
+    private List<Conseiller> listConseiller = new ArrayList<Conseiller>();
+    
+    @OneToOne(mappedBy = "agence")
+    private Directeur directeur;
 
-    public List<Employe> getListEmploye() {
-        return listEmploye;
+    public Directeur getDirecteur() {
+		return directeur;
+	}
+
+	public void setDirecteur(Directeur directeur) {
+		this.directeur = directeur;
+	}
+
+	public List<Conseiller> getListConseiller() {
+        return listConseiller;
     }
 
-    public void setListEmploye(List<Employe> listEmploye) {
-        this.listEmploye = listEmploye;
+    public void setListConseiller(List<Conseiller> listConseiller) {
+        this.listConseiller = listConseiller;
     }
 
     public String getAgenceName() {
@@ -59,7 +71,7 @@ public class Agence {
                 "id=" + id +
                 ", dateDeCreation=" + dateDeCreation +
                 ", agenceName='" + agenceName + '\'' +
-                ", listEmploye=" + listEmploye +
+                ", listConseiller=" + listConseiller +
                 '}';
     }
 }

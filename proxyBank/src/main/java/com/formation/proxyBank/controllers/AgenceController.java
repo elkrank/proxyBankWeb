@@ -17,7 +17,7 @@ import com.formation.proxyBank.entities.Agence;
 import com.formation.proxyBank.service.AgenceService;
 
 @RestController
-@RequestMapping("/proxybank")
+//@RequestMapping("/proxybank")
 public class AgenceController {
     @Autowired
     AgenceService agenceService;
@@ -27,7 +27,7 @@ public class AgenceController {
        Agence agence = agenceService.createAgence(name);
         return agence;
     }
-    @GetMapping("/agences/{id}/")
+    @GetMapping("/agences/{id}")
     @ResponseBody
     public Agence getAgenceById(@PathVariable Long id){
         Agence agence = agenceService.findById(id);
