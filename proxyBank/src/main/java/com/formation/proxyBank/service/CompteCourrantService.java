@@ -17,7 +17,7 @@ public class CompteCourrantService {
 	@Autowired
 	ClientService clientService;
 
-	public CompteCourrant creercompteCourrant(Integer numeroDeCompte, Double solde, Long idClient) {
+	public CompteCourrant creercompteCourrant(Long numeroDeCompte, Double solde, Long idClient) {
 		CompteCourrant compteCourrant = new CompteCourrant(numeroDeCompte, solde, clientService.getOneClient(idClient));
 		return compteCourrantRepository.save(compteCourrant);
 	}

@@ -17,7 +17,7 @@ public class CompteEpargneService {
 	@Autowired
 	ClientService clientService;
 
-	public CompteEpargne createCompteEpargne(Integer numeroDeCompte, Double solde, Long idClient) {
+	public CompteEpargne createCompteEpargne(Long numeroDeCompte, Double solde, Long idClient) {
 		CompteEpargne compteEpargneNew = new CompteEpargne();
 		compteEpargneNew.setNumeroDeCompte(numeroDeCompte);
 		compteEpargneNew.setSolde(solde);

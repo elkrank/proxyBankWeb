@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 public class CompteCourrant extends Compte {
 	private Double autorisationDecouverte;
 
-	public CompteCourrant(int numeroDeCompte, double solde, Client client) {
+	public CompteCourrant(Long numeroDeCompte, double solde, Client client) {
 		super(numeroDeCompte, solde, client);
 		this.autorisationDecouverte = 1000.00;
 	}
