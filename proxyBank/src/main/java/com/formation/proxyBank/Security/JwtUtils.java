@@ -2,6 +2,7 @@ package com.formation.proxyBank.Security;
 
 import java.util.Date;
 
+import com.formation.proxyBank.Security.services.UserDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,16 +15,16 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
-//TODO implementer EmployeDetails pour remplacer UserDetails
+
 
 @Component
 public class JwtUtils {
 	private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-	@Value("${bezkoder.app.jwtSecret}")
+	@Value("${proxyBank.app.jwtSecret}")
 	private String jwtSecret;
 
-	@Value("${bezkoder.app.jwtExpirationMs}")
+	@Value("${proxyBank.app.jwtExpirationMs}")
 	private int jwtExpirationMs;
 
 	public String generateJwtToken(Authentication authentication) {

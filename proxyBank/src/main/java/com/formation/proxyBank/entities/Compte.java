@@ -20,8 +20,8 @@ public abstract class Compte {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Integer numeroDeCompte;
-	private Double solde;
+	private Long numeroDeCompte;
+	private Double solde =0.0;
 	private LocalDate dateOuverture;
 
 	@ManyToOne
@@ -33,7 +33,7 @@ public abstract class Compte {
 		this.dateOuverture = LocalDate.now();
 	}
 
-	public Compte(Integer numeroDeCompte, Double solde, Client client) {
+	public Compte(Long numeroDeCompte, Double solde, Client client) {
 		super();
 		this.numeroDeCompte = numeroDeCompte;
 		this.solde = solde;
@@ -49,11 +49,11 @@ public abstract class Compte {
 		this.id = id;
 	}
 
-	public Integer getNumeroDeCompte() {
+	public Long getNumeroDeCompte() {
 		return numeroDeCompte;
 	}
 
-	public void setNumeroDeCompte(Integer numeroDeCompte) {
+	public void setNumeroDeCompte(Long numeroDeCompte) {
 		this.numeroDeCompte = numeroDeCompte;
 	}
 

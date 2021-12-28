@@ -13,7 +13,6 @@ import com.formation.proxyBank.entities.Admin;
 import com.formation.proxyBank.service.AdminService;
 
 @RestController
-@RequestMapping("/proxybank")
 public class AdminController {
 	@Autowired
 	AdminService adminService;

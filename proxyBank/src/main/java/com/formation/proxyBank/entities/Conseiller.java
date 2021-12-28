@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @DiscriminatorValue("Conseiller")
+
 public class Conseiller extends Employe {
 	@ManyToOne 
 	@JsonIgnore
@@ -23,7 +24,7 @@ public class Conseiller extends Employe {
 	public Conseiller(String nom, String prenom) {
 		super(nom, prenom);
 	}
-
+	public Conseiller(String username,String email,String password){super(username, email, password);}
 	public Conseiller() {
 	}
 	

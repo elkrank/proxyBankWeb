@@ -1,22 +1,25 @@
 package com.formation.proxyBank.entities;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn(name="type_employe")
-public abstract class Employe {
+public  class Employe implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@NotBlank
+	private String username;
 
 	@NotBlank
 	private String nom;
@@ -24,21 +27,89 @@ public abstract class Employe {
 	@NotBlank
 	private String prenom;
 
+	public String getUsername() {
+		return username;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return false;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	@NotBlank
 	@Email
 	private String email;
 
 	@NotBlank
-	private String mdp;
-	@NotBlank
+	private String password;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(	name = "employe_roles",
+			joinColumns = @JoinColumn(name = "employe_id"),
+			inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
+
 	public Employe(String nom, String prenom) {
-		super();
+
 		this.nom = nom;
 		this.prenom = prenom;
 	}
+	public Employe(String username,String email,String password){
+		this.username = username;
+		this.email = email;
+		this.password=password;
+	}
 
 	public Employe() {
-		super();
+
 	}
 
 	public Long getId() {
