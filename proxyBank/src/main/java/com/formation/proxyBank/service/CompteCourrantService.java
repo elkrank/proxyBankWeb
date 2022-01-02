@@ -18,8 +18,11 @@ public class CompteCourrantService {
 	ClientService clientService;
 
 	public CompteCourrant creercompteCourrant(Long numeroDeCompte, Double solde, Long idClient) {
+		System.out.println("solde"+solde+"numCompte : "+numeroDeCompte);
+		System.out.println(clientService.getOneClient(idClient));
 		CompteCourrant compteCourrant = new CompteCourrant(numeroDeCompte, solde, clientService.getOneClient(idClient));
-		return compteCourrantRepository.save(compteCourrant);
+		compteCourrantRepository.save(compteCourrant);
+		return compteCourrant;
 	}
 
 	public CompteCourrant readCompteCourrant(Long id) {

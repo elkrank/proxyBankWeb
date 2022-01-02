@@ -30,8 +30,8 @@ public class ClientService {
 	}
 	
 	public Client getOneClient(Long id) {
-		Optional<Client> client = clientRepository.findById(id);
-		return client.get();
+	Client client = clientRepository.getById(id);
+		return client;
 	}
 	
 	public String deleteClient(Long id)  {
