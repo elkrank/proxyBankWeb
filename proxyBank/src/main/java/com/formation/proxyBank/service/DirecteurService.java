@@ -20,22 +20,28 @@ public class DirecteurService {
 	}
 
 	public List<Directeur> listerDirecteur() {
-		// TODO Auto-generated method stub
-		return null;
+		return directeurRepository.findAll();
 	}
 
 	public Optional<Directeur> findDirecteurById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return directeurRepository.findById(id);
 	}
 
 	public void deleteDirecteur(Long id) {
-		// TODO Auto-generated method stub
-		
+		directeurRepository.deleteById(id);
 	}
 
 	public void updateDirecteur(Long id, Directeur directeur) {
-		// TODO Auto-generated method stub
+		if(directeurRepository.getById(id)!=null){
+			Directeur directeurInBdd = directeurRepository.getById(id);
+			if(directeur.getNom() == null){
+				directeur.setNom(directeurInBdd.getNom());
+			}
+			if(directeur.getPrenom() == null){
+				directeur.setPrenom(directeurInBdd.getPrenom());
+			}
+			directeurRepository.save(directeur);
+		}
 		
 	}
 }
