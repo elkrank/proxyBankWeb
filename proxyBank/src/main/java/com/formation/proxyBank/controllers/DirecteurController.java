@@ -28,12 +28,12 @@ public class DirecteurController {
 	}
 	
 	@GetMapping
-	
 	public List<Directeur> findAllDirecteurs(){
 		return directeurService.listerDirecteur();
 	}
 	@GetMapping("/{id}")
 	public Optional<Directeur> findDirecteurById(@PathVariable Long id) {
+
 		return directeurService.findDirecteurById(id);
 	}
 	
