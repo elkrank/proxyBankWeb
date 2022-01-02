@@ -19,10 +19,12 @@ public class AdminService {
     }
     
     public void deleteAdmin(Long id) {
+
         adminRepository.delete(adminRepository.getById(id));
     }
     
     public List<Admin> getAllAdmin() {
+
         return adminRepository.findAll();
     }
 }

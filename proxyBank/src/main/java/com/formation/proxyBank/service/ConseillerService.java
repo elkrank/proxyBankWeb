@@ -26,6 +26,7 @@ public class ConseillerService {
 	}
 
 	public List<Conseiller> listerConseiller() {
+
 		return conseillerRepository.findAll();
 	}
 
