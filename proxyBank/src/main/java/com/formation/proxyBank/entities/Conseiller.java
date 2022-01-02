@@ -25,6 +25,8 @@ public class Conseiller extends Employe {
 		super(nom, prenom);
 	}
 	public Conseiller(String username,String email,String password){super(username, email, password);}
+	public Conseiller(String username,String email,String password,String nom,String prenom){super(username, email, password,nom,prenom);}
+
 	public Conseiller() {
 	}
 	

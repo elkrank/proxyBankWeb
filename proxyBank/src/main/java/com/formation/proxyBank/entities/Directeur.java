@@ -21,6 +21,9 @@ public class Directeur extends Employe {
 		super(nom, prenom);
 		this.agence = agence;
 	}
+	public Directeur(String username,String email,String password,String nom,String prenom){
+		super(username, email, password,nom,prenom);
+	}
 
 	public Agence getAgence() {
 		return agence;

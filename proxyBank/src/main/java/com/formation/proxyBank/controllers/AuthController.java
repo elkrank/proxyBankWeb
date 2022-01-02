@@ -3,10 +3,7 @@ package com.formation.proxyBank.controllers;
 import com.formation.proxyBank.Security.JwtUtils;
 import com.formation.proxyBank.Security.RoleEnum;
 import com.formation.proxyBank.Security.services.UserDetailsImpl;
-import com.formation.proxyBank.entities.Admin;
-import com.formation.proxyBank.entities.Conseiller;
-import com.formation.proxyBank.entities.Employe;
-import com.formation.proxyBank.entities.Role;
+import com.formation.proxyBank.entities.*;
 import com.formation.proxyBank.payload.request.LoginRequest;
 import com.formation.proxyBank.payload.request.SignupRequest;
 import com.formation.proxyBank.payload.response.JwtResponse;
@@ -81,11 +78,13 @@ public class AuthController {
                     .badRequest()
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
-//TODO : ajouter les détails du  conseiller (nom , prenom)
-        // Create new user's account
+
+
         Employe user = new Conseiller(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+                encoder.encode(signUpRequest.getPassword()),
+                signUpRequest.getNom(),
+                signUpRequest.getPrenom());
 
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
@@ -124,7 +123,7 @@ public class AuthController {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
-    //TODO : ajouter les détails du admim (nom , prenom)
+
     @PostMapping("/signup-as-admin")
     public ResponseEntity<?> registerAdmin(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -142,7 +141,9 @@ public class AuthController {
 
         Employe user = new Admin(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+                encoder.encode(signUpRequest.getPassword()),
+                signUpRequest.getNom(),
+                signUpRequest.getPrenom());
 
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
@@ -154,22 +155,78 @@ public class AuthController {
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
-                    case "admin":
+                    case "ADMIN":
                         Role adminRole = roleRepository.findByName(RoleEnum.ROLE_ADMIN)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
-
                         break;
-                    case "mod":
+                    case "DIRECTEUR":
                         Role modRole = roleRepository.findByName(RoleEnum.ROLE_DIRECTEUR)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(modRole);
-
                         break;
-                    default:
+                    case"CONSEILLER":
                         Role userRole = roleRepository.findByName(RoleEnum.ROLE_CONSEILLER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(userRole);
+                    default:
+                        new RuntimeException("Error: Role is not found.");
+                }
+            });
+        }
+
+        user.setRoles(roles);
+        userRepository.save(user);
+
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+    @PostMapping("/signup-as-directeur")
+    public ResponseEntity<?> registerDirecteur(@Valid @RequestBody SignupRequest signUpRequest) {
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Username is already taken!"));
+        }
+
+        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Email is already in use!"));
+        }
+
+
+        Employe user = new Directeur(signUpRequest.getUsername(),
+                signUpRequest.getEmail(),
+                encoder.encode(signUpRequest.getPassword()),
+                signUpRequest.getNom(),
+                signUpRequest.getPrenom());
+
+        Set<String> strRoles = signUpRequest.getRole();
+        Set<Role> roles = new HashSet<>();
+
+        if (strRoles == null) {
+            Role userRole = roleRepository.findByName(RoleEnum.ROLE_DIRECTEUR)
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            roles.add(userRole);
+        } else {
+            strRoles.forEach(role -> {
+                switch (role) {
+                    case "ADMIN":
+                        Role adminRole = roleRepository.findByName(RoleEnum.ROLE_ADMIN)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(adminRole);
+                        break;
+                    case "DIRECTEUR":
+                        Role modRole = roleRepository.findByName(RoleEnum.ROLE_DIRECTEUR)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(modRole);
+                        break;
+                    case"CONSEILLER":
+                        Role userRole = roleRepository.findByName(RoleEnum.ROLE_CONSEILLER)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(userRole);
+                    default:
+                        new RuntimeException("Error: Role is not found.");
                 }
             });
         }

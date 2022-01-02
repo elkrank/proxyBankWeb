@@ -27,6 +27,13 @@ public  class Employe implements UserDetails {
 	@NotBlank
 	private String prenom;
 
+	@NotBlank
+	@Email
+	private String email;
+
+	@NotBlank
+	private String password;
+
 	public String getUsername() {
 		return username;
 	}
@@ -55,12 +62,7 @@ public  class Employe implements UserDetails {
 		this.username = username;
 	}
 
-	@NotBlank
-	@Email
-	private String email;
 
-	@NotBlank
-	private String password;
 
 	public String getEmail() {
 		return email;
@@ -106,6 +108,13 @@ public  class Employe implements UserDetails {
 		this.username = username;
 		this.email = email;
 		this.password=password;
+	}
+	public Employe(String username,String email,String password,String nom,String prenom){
+		this.username = username;
+		this.email = email;
+		this.password=password;
+		this.nom=nom;
+		this.prenom=prenom;
 	}
 
 	public Employe() {
