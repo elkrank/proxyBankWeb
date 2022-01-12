@@ -49,8 +49,8 @@ public class ConseillerService {
 		
 	}
 
-	public Optional<Conseiller> findConseillerById(Long id) {
-		return conseillerRepository.findById(id);
+	public Conseiller findConseillerById(Long id) {
+		return conseillerRepository.getById(id);
 		
 	}
 

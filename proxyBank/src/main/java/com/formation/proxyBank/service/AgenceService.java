@@ -38,9 +38,9 @@ public class AgenceService {
     ConseillerService conseillerService;
     public Agence addEmployeToAgence(Long id_agence, Long idEmploye) {
         Agence agence = agenceRepository.getById(id_agence);
-        Optional<Conseiller> employe = conseillerService.findConseillerById(idEmploye);
-       agence.getListConseiller().add(employe.get());
-       agenceRepository.save(agence);
+        Conseiller employe = conseillerService.findConseillerById(idEmploye);
+        employe.setAgence(agence);
+        agenceRepository.save(agence);
         return  agence;
     }
 

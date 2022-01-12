@@ -19,8 +19,8 @@ public class Agence {
 
     private LocalDate dateDeCreation =  LocalDate.now();
     private String agenceName;
-    @OneToMany
-    private List<Conseiller> listConseiller = new ArrayList<Conseiller>();
+    @OneToMany(mappedBy = "agence")
+    public List<Conseiller> listConseiller = new ArrayList<Conseiller>();
     
     @OneToOne(mappedBy = "agence")
     private Directeur directeur;
@@ -32,6 +32,7 @@ public class Agence {
 	public void setDirecteur(Directeur directeur) {
 		this.directeur = directeur;
 	}
+	
 
 	public List<Conseiller> getListConseiller() {
         return listConseiller;

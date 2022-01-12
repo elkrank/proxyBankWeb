@@ -21,7 +21,7 @@ public class Client {
 	@ManyToOne
 	@JsonIgnore
 	private Conseiller conseiller;
-	
+
 	@OneToMany(mappedBy = "idClient")
 	private List<Carte> cartes = new ArrayList<Carte>();
 

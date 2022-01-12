@@ -41,7 +41,7 @@ public class AgenceController {
         return agence;
     }
 
-    @PostMapping("/agences/{id_agence}/ajouterEmploye/{idEmploye}")
+    @PutMapping("/agences/{id_agence}/ajouterEmploye/{idEmploye}")
     public Agence addEmployeToAgence(@PathVariable Long id_agence,@PathVariable Long idEmploye){
     Agence agence = agenceService.addEmployeToAgence(id_agence,idEmploye);
     return agence;

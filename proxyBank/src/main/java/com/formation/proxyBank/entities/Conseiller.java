@@ -20,13 +20,13 @@ public class Conseiller extends Employe {
 	
 	@OneToMany(mappedBy = "conseiller")
 	private  List<Client> clients = new ArrayList<Client>();
+	
+	public Conseiller(String username,String email,String password,String nom,String prenom){super(username, email, password,nom,prenom);}
 
 	public Conseiller(String nom, String prenom) {
 		super(nom, prenom);
 	}
 	public Conseiller(String username,String email,String password){super(username, email, password);}
-	public Conseiller(String username,String email,String password,String nom,String prenom){super(username, email, password,nom,prenom);}
-
 	public Conseiller() {
 	}
 	

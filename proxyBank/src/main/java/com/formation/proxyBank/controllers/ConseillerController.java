@@ -34,7 +34,7 @@ public class ConseillerController {
 		return conseillerService.listerConseiller();
 	}
 	@GetMapping("/{id}")
-	public Optional<Conseiller> findConseillerById(@PathVariable Long id) {
+	public Conseiller findConseillerById(@PathVariable Long id) {
 		return conseillerService.findConseillerById(id);
 	}
 
