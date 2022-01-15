@@ -44,6 +44,7 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
+    @CrossOrigin
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -64,7 +65,7 @@ public class AuthController {
                 userDetails.getEmail(),
                 roles));
     }
-
+    @CrossOrigin
     @PostMapping("/signup-as-conseiller")
     public ResponseEntity<?> registerConseiller(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -123,7 +124,7 @@ public class AuthController {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
-
+    @CrossOrigin
     @PostMapping("/signup-as-admin")
     public ResponseEntity<?> registerAdmin(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -180,6 +181,7 @@ public class AuthController {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
+    @CrossOrigin
     @PostMapping("/signup-as-directeur")
     public ResponseEntity<?> registerDirecteur(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {

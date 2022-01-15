@@ -17,30 +17,30 @@ public class CompteEpargneController {
 	@Autowired
 	CompteEpargneService compteEpargneService;
 
-
+	@CrossOrigin
 	@PostMapping
 	public CompteEpargne createComptesEpargne(@RequestParam Long numeroDeCompte,@RequestParam Double solde,@RequestParam Long idClient) {
 		return compteEpargneService.createCompteEpargne(numeroDeCompte, solde, idClient);
 	}
 
-
+	@CrossOrigin
 	@GetMapping("/{id}")
 	public Optional<CompteEpargne> readCompteEpargne(@PathVariable Long id){
 		return compteEpargneService.readCompteEpargne(id);
 		}
-
+	@CrossOrigin
 	@DeleteMapping("/{id}")
 	public void deleteCompteEpargne(@PathVariable Long id) {
 		compteEpargneService.deleteCompteEpargne(id);
 	}
 
-
+	@CrossOrigin
 	@GetMapping
 	public List<CompteEpargne> getAllComptesCourrants() {
 		return compteEpargneService.getAllCompteEpargne();
 	}
 
-
+	@CrossOrigin
 	@PutMapping("/{id}")
 	public CompteEpargne updateCompteEpargne(@PathVariable Long id, @RequestBody CompteEpargne compteEpargne) {
 		return compteEpargneService.updateCompteEpargne(id, compteEpargne);

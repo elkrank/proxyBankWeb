@@ -51,4 +51,11 @@ public class AgenceService {
     public List<Agence> getAllAgence() {
         return agenceRepository.findAll();
     }
+
+    public List<Double> listeSoldeCompteCourrantAgence(Long agence_id){
+        return agenceRepository.listeSoldeCompteCourrantAgence(agence_id);
+    }
+    public List<Double> listeSoldeCompteEpargneAgence(Long agence_id){
+        return agenceRepository.listeSoldeCompteEpargneAgence(agence_id);
+    }
 }
