@@ -23,7 +23,7 @@ public class AdminController {
 		adminService.deleteAdmin(id);
 	}
 	@CrossOrigin
-    @GetMapping("/admin/{id}") 
+    @GetMapping("/admin/{id}")
     public Admin getAdminById(@PathVariable Long id){
     	return adminService.findById(id);
     }
