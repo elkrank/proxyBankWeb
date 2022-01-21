@@ -36,7 +36,7 @@ public class CompteEpargneController {
 
 	@CrossOrigin
 	@GetMapping
-	public List<CompteEpargne> getAllComptesCourrants() {
+	public List<CompteEpargne> getAllComptesEpargne() {
 		return compteEpargneService.getAllCompteEpargne();
 	}
 
