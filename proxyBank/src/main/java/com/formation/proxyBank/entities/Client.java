@@ -24,14 +24,15 @@ public class Client {
 
 	@OneToMany(mappedBy = "idClient")
 	private List<Carte> cartes = new ArrayList<Carte>();
-
+/*
 	@OneToMany(mappedBy = "client")
-	private List<Compte> comptes = new ArrayList<Compte>();
+	private List<Compte> comptes = new ArrayList<Compte>();*/
 
 	@OneToOne(mappedBy = "client")
 	private CompteCourrant compteCourrant;
 
-	@OneToOne
+	@OneToOne(mappedBy = "client")
+	private CompteEpargne compteEpargne;
 
 
 	public Long getId() {
@@ -90,13 +91,20 @@ public class Client {
 		this.conseiller = conseiller;
 	}
 
-
-
-	public List<Compte> getComptes() {
-		return comptes;
+	public CompteCourrant getCompteCourrant() {
+		return compteCourrant;
 	}
-	public void setComptes(List<Compte> comptes) {
-		this.comptes = comptes;
+
+	public void setCompteCourrant(CompteCourrant compteCourrant) {
+		this.compteCourrant = compteCourrant;
+	}
+
+	public CompteEpargne getCompteEpargne() {
+		return compteEpargne;
+	}
+
+	public void setCompteEpargne(CompteEpargne compteEpargne) {
+		this.compteEpargne = compteEpargne;
 	}
 
 	@Override
