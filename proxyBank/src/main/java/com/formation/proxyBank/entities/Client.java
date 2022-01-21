@@ -24,14 +24,16 @@ public class Client {
 
 	@OneToMany(mappedBy = "idClient")
 	private List<Carte> cartes = new ArrayList<Carte>();
-/*
-	@OneToMany(mappedBy = "client")
+
+	/*@OneToMany(mappedBy = "client")
 	private List<Compte> comptes = new ArrayList<Compte>();*/
 
-	@OneToOne(mappedBy = "client")
+
+
+	@OneToOne
 	private CompteCourrant compteCourrant;
 
-	@OneToOne(mappedBy = "client")
+	@OneToOne
 	private CompteEpargne compteEpargne;
 
 

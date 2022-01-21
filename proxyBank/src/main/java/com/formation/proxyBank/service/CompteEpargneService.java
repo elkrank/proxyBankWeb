@@ -3,6 +3,7 @@ package com.formation.proxyBank.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.formation.proxyBank.entities.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,10 @@ public class CompteEpargneService {
 		compteEpargneNew.setSolde(solde);
 		compteEpargneNew.setClient(clientService.getOneClient(idClient));
 		compteEpargneRepository.save(compteEpargneNew);
+
+		Client client = clientService.getOneClient(idClient);
+		client.setCompteEpargne(compteEpargneNew);
+		clientService.updateClient(idClient,client);
 		return compteEpargneNew;
 		
 	}

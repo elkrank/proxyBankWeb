@@ -46,6 +46,9 @@ public class ClientService {
 		client.setPrenom(ClientUpdate.getPrenom());
 		client.setCodePostal(ClientUpdate.getCodePostal());
 		client.setTelephone(ClientUpdate.getTelephone());
+		client.setCompteCourrant(ClientUpdate.getCompteCourrant());
+		client.setCompteEpargne(ClientUpdate.getCompteEpargne());
+
 		return clientRepository.save(client);
 	}
 
