@@ -52,6 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/comptes-epargne/*")
 				.hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/cartes")
 				.hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/cartes/*")
+				.hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/virement")
 				.hasAnyRole("ADMIN", "DIRECTEUR").antMatchers("/agences/*/ajouterEmploye/?idEmploye")
 				.hasAnyRole("ADMIN", "DIRECTEUR").antMatchers("/agences/*/employes").hasAnyRole("ADMIN", "DIRECTEUR")
 				.antMatchers("/agences/*/audit").hasAnyRole("ADMIN", "DIRECTEUR").anyRequest().permitAll();
