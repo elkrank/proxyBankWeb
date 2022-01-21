@@ -11,7 +11,7 @@ import com.formation.proxyBank.entities.CompteEpargne;
 import com.formation.proxyBank.service.CompteEpargneService;
 
 @RestController
-@RequestMapping("/comptese-epargne")
+@RequestMapping("/comptes-epargne")
 public class CompteEpargneController {
 
 	@Autowired

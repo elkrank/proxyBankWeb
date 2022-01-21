@@ -28,6 +28,11 @@ public class Client {
 	@OneToMany(mappedBy = "client")
 	private List<Compte> comptes = new ArrayList<Compte>();
 
+	@OneToOne(mappedBy = "client")
+	private CompteCourrant compteCourrant;
+
+	@OneToOne
+
 
 	public Long getId() {
 		return id;
