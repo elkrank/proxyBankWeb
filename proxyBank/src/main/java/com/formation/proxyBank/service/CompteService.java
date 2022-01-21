@@ -19,10 +19,10 @@ public class CompteService {
 
     @Autowired
     CompteEpargneRepository compteEpargneRepository;
-    public void Virement(Double montantVirement,Compte compteEmeteur, Compte compteRecepteur){
+    public void Virement(Double montantVirement,Long compteEmeteur, Long compteRecepteur){
 
-        Compte emeteur = compteEmeteur;
-        Compte recepteur = compteRecepteur;
+        Compte emeteur = compteRepository.getById(compteEmeteur);
+        Compte recepteur = compteRepository.getById(compteRecepteur);
         Double montant = montantVirement;
 
         String typeCompteEmeteur = compteRepository.getTypeCompte(emeteur.getId());
@@ -36,7 +36,7 @@ public class CompteService {
                     recepteur.setSolde(recepteur.getSolde() + montant );
 
                     compteCourrantRepository.save( (CompteCourrant) emeteur );
-                    compteCourrantRepository.save( (CompteCourrant) compteRecepteur );
+                    compteCourrantRepository.save( (CompteCourrant) recepteur );
                 }
 
         }
@@ -47,7 +47,7 @@ public class CompteService {
                 recepteur.setSolde(recepteur.getSolde() + montant );
 
                 compteEpargneRepository.save( (CompteEpargne) emeteur );
-                compteEpargneRepository.save( (CompteEpargne) compteRecepteur );
+                compteEpargneRepository.save( (CompteEpargne) recepteur );
             }
 
         }
@@ -57,7 +57,7 @@ public class CompteService {
                 emeteur.setSolde(emeteur.getSolde() - montant );
                 recepteur.setSolde(recepteur.getSolde() + montant );
                 compteCourrantRepository.save( (CompteCourrant) emeteur );
-                compteEpargneRepository.save( (CompteEpargne) compteRecepteur );
+                compteEpargneRepository.save( (CompteEpargne) recepteur );
             }
 
         }
@@ -69,7 +69,7 @@ public class CompteService {
                 recepteur.setSolde(recepteur.getSolde() + montant );
 
                 compteEpargneRepository.save( (CompteEpargne) emeteur );
-                compteCourrantRepository.save( (CompteCourrant) compteRecepteur );
+                compteCourrantRepository.save( (CompteCourrant) recepteur );
             }
         }
 
