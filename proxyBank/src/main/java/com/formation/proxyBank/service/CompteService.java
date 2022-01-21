@@ -19,11 +19,11 @@ public class CompteService {
 
     @Autowired
     CompteEpargneRepository compteEpargneRepository;
-    public void Virement(double montantVirement,Compte compteEmeteur, Compte compteRecepteur){
+    public void Virement(Double montantVirement,Compte compteEmeteur, Compte compteRecepteur){
 
         Compte emeteur = compteEmeteur;
         Compte recepteur = compteRecepteur;
-        double montant = montantVirement;
+        Double montant = montantVirement;
 
         String typeCompteEmeteur = compteRepository.getTypeCompte(emeteur.getId());
         String typeCompteRecepteur = compteRepository.getTypeCompte(recepteur.getId());

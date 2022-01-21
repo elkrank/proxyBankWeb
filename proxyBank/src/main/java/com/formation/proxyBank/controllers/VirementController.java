@@ -13,7 +13,7 @@ public class VirementController {
     CompteService compteService;
     @CrossOrigin
     @PutMapping("/virement")
-    public void virement(double montant, Compte emeteur, Compte recepteur){
+    public void virement(Double montant, Compte emeteur, Compte recepteur){
         compteService.Virement(montant,emeteur,recepteur);
 
     }
