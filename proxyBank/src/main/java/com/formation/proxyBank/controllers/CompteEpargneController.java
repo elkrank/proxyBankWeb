@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import com.formation.proxyBank.entities.CompteEpargne;
 import com.formation.proxyBank.service.CompteEpargneService;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = "Compte Epargne", description = " ")
 @RestController
 @RequestMapping("/comptese-epargne")
 public class CompteEpargneController {
@@ -19,15 +22,17 @@ public class CompteEpargneController {
 
 	@CrossOrigin
 	@PostMapping
-	public CompteEpargne createComptesEpargne(@RequestParam Long numeroDeCompte,@RequestParam Double solde,@RequestParam Long idClient) {
+	public CompteEpargne createComptesEpargne(@RequestParam Long numeroDeCompte, @RequestParam Double solde,
+			@RequestParam Long idClient) {
 		return compteEpargneService.createCompteEpargne(numeroDeCompte, solde, idClient);
 	}
 
 	@CrossOrigin
 	@GetMapping("/{id}")
-	public Optional<CompteEpargne> readCompteEpargne(@PathVariable Long id){
+	public Optional<CompteEpargne> readCompteEpargne(@PathVariable Long id) {
 		return compteEpargneService.readCompteEpargne(id);
-		}
+	}
+
 	@CrossOrigin
 	@DeleteMapping("/{id}")
 	public void deleteCompteEpargne(@PathVariable Long id) {

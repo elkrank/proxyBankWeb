@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import com.formation.proxyBank.entities.CompteCourrant;
 import com.formation.proxyBank.service.CompteCourrantService;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = "Compte Courant", description = " ")
 @RestController
 @RequestMapping("/comptes")
 public class CompteCourrantController {
@@ -17,14 +20,16 @@ public class CompteCourrantController {
 
 	@CrossOrigin
 	@PostMapping
-	public CompteCourrant createCompteCourrant(@RequestParam Long numeroDeCompte,@RequestParam Double solde,@RequestParam Long idClient) {
+	public CompteCourrant createCompteCourrant(@RequestParam Long numeroDeCompte, @RequestParam Double solde,
+			@RequestParam Long idClient) {
 		return compteCourrantService.creercompteCourrant(numeroDeCompte, solde, idClient);
 	}
+
 	@CrossOrigin
 	@GetMapping("/{id}")
-	public CompteCourrant readCompteCourrant(@PathVariable Long id){
+	public CompteCourrant readCompteCourrant(@PathVariable Long id) {
 		return compteCourrantService.readCompteCourrant(id);
-		}
+	}
 
 	@CrossOrigin
 	@DeleteMapping("/{id}")

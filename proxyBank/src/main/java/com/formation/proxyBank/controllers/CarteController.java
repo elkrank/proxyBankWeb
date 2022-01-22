@@ -10,31 +10,37 @@ import com.formation.proxyBank.dto.CarteDto;
 import com.formation.proxyBank.entities.Carte;
 import com.formation.proxyBank.service.CarteService;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = "Carte", description = " ")
 @RestController
 public class CarteController {
-	
-	@Autowired CarteService carteService;
+
+	@Autowired
+	CarteService carteService;
+
 	@CrossOrigin
-	@PostMapping("/cartes") 
-		public Carte createCarte(@RequestBody CarteDto carteDto, Long clientId) {
-			return carteService.createCarte(carteDto, clientId);
-		}
+	@PostMapping("/cartes")
+	public Carte createCarte(@RequestBody CarteDto carteDto, Long clientId) {
+		return carteService.createCarte(carteDto, clientId);
+	}
 
 	@CrossOrigin
 	@GetMapping("/cartes/{id}")
-		public Carte getCarteById(@PathVariable Long id) {
-			return carteService.getCarteById(id);
+	public Carte getCarteById(@PathVariable Long id) {
+		return carteService.getCarteById(id);
 	}
 
 	@CrossOrigin
 	@Transactional
 	@DeleteMapping("/cartes/{id}")
-		public void deleteCarte(@PathVariable Long id) {
-			carteService.deleteCarte(id);
+	public void deleteCarte(@PathVariable Long id) {
+		carteService.deleteCarte(id);
 	}
+
 	@CrossOrigin
-	@PutMapping("/cartes/{id}") 
-		public void modifyCarte(@PathVariable Long id, @RequestBody CarteDto carteDto) {
-			carteService.modifyCarte(id, carteDto);
+	@PutMapping("/cartes/{id}")
+	public void modifyCarte(@PathVariable Long id, @RequestBody CarteDto carteDto) {
+		carteService.modifyCarte(id, carteDto);
 	}
 }

@@ -8,23 +8,29 @@ import org.springframework.web.bind.annotation.*;
 import com.formation.proxyBank.entities.Admin;
 import com.formation.proxyBank.service.AdminService;
 
+import io.swagger.annotations.Api;
+
+@Api(tags = "Admin", description = " ")
 @RestController
 public class AdminController {
 	@Autowired
 	AdminService adminService;
+
 	@CrossOrigin
 	@GetMapping("/admin")
 	public List<Admin> getAllAdmin() {
 		return adminService.getAllAdmin();
 	}
+
 	@CrossOrigin
-    @DeleteMapping("/admin/{id}")
+	@DeleteMapping("/admin/{id}")
 	public void deleteAdmin(@PathVariable Long id) {
 		adminService.deleteAdmin(id);
 	}
+
 	@CrossOrigin
-    @GetMapping("/admin/{id}")
-    public Admin getAdminById(@PathVariable Long id){
-    	return adminService.findById(id);
-    }
+	@GetMapping("/admin/{id}")
+	public Admin getAdminById(@PathVariable Long id) {
+		return adminService.findById(id);
+	}
 }
