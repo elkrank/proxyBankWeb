@@ -13,40 +13,44 @@ import com.formation.proxyBank.dto.ClientDto;
 import com.formation.proxyBank.entities.Client;
 import com.formation.proxyBank.service.ClientService;
 
+import io.swagger.annotations.Api;
 
-	@RestController
-	public class ClientController {
-		
-		@Autowired
-		ClientService clientService;
-		@CrossOrigin
-		@PostMapping(value = "/clients", consumes = "application/json")
-		public Client createClient(@RequestBody ClientDto clientDto) {
-			return clientService.createClient(clientDto);
-		}
+@Api(tags = "Client", description = " ")
+@RestController
+public class ClientController {
 
-		@CrossOrigin
-		@GetMapping("/clients")
-		public List<Client> getAllClients() {
-			return clientService.getAllClients();
-		}
+	@Autowired
+	ClientService clientService;
 
-		@CrossOrigin
-		@GetMapping("/clients/{id}")
-		public Client getClient(@PathVariable Long id) {
-			return clientService.getOneClient(id);
-		}
-		@CrossOrigin
-		@Transactional
-		@DeleteMapping("/clients/{id}")
-		public void deleteClient(@PathVariable Long id) {
-			clientService.deleteClient(id);
-		}
+	@CrossOrigin
+	@PostMapping(value = "/clients", consumes = "application/json")
+	public Client createClient(@RequestBody ClientDto clientDto) {
+		return clientService.createClient(clientDto);
+	}
 
-		@CrossOrigin
-		@PutMapping("/clients/{id}")
-		public Client updateClient (@PathVariable Long id, @RequestBody Client ClientUpdate) {
-			Client client = clientService.updateClient(id, ClientUpdate);
-			return client;
-		}
+	@CrossOrigin
+	@GetMapping("/clients")
+	public List<Client> getAllClients() {
+		return clientService.getAllClients();
+	}
+
+	@CrossOrigin
+	@GetMapping("/clients/{id}")
+	public Client getClient(@PathVariable Long id) {
+		return clientService.getOneClient(id);
+	}
+
+	@CrossOrigin
+	@Transactional
+	@DeleteMapping("/clients/{id}")
+	public void deleteClient(@PathVariable Long id) {
+		clientService.deleteClient(id);
+	}
+
+	@CrossOrigin
+	@PutMapping("/clients/{id}")
+	public Client updateClient(@PathVariable Long id, @RequestBody Client ClientUpdate) {
+		Client client = clientService.updateClient(id, ClientUpdate);
+		return client;
+	}
 }
