@@ -84,24 +84,12 @@ import com.formation.proxyBank.service.ClientService;
 			clientDto.setAdresse(adresse);
 			clientDto.setCodePostal(codePostal);
 			clientDto.setTelephone(telephone);
-			System.out.println("registerdto in controller");
-			System.out.println(fullRegisterDto.getNom());
-			System.out.println(fullRegisterDto.getAdresse());
-			System.out.println(fullRegisterDto.getPrenom());
-			System.out.println(fullRegisterDto.getNumeroCompteCourrant());
-			System.out.println(fullRegisterDto.getSoldeCompteEpargne());
 
-			System.out.println("dto in controller");
-			System.out.println(clientDto.getAdresse());
-			System.out.println(clientDto.getPrenom());
-			System.out.println(clientDto.getNom());
-			System.out.println(clientDto.getTelephone());
 
 			Client  client = clientService.createClient(clientDto);
 
 			Long clientID = client.getId();
-			System.out.println("clientID");
-			System.out.println(clientID);
+
 
 
 
@@ -126,7 +114,7 @@ import com.formation.proxyBank.service.ClientService;
 			carteDto.setNumero(numero);
 			System.out.println(typeCarte);
 			carteService.createCarte(carteDto,clientID);
-			System.out.println(carteService.createCarte(carteDto,clientID));
+
 
 
 		}

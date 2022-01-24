@@ -27,8 +27,8 @@ public class CarteService {
 		carte.setIdClient(dto.getIdClient());
 		carte.setNumero(dto.getNumero());
 		carte.setTypeCarte(dto.getTypeCarte());
-		
-		return carteRepository.save(carte);
+		carteRepository.save(carte);
+		return carte;
 	}
 
 	public Carte getCarteById(Long id) {
