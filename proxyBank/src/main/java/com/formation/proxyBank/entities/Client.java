@@ -35,7 +35,16 @@ public class Client {
 
 	@OneToOne
 	private CompteEpargne compteEpargne;
-
+	public Client(){
+		
+	}
+	public Client(String nom, String prenom, String adresse, int codePostal, String telephone) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.codePostal = codePostal;
+		this.telephone = telephone;
+	}
 
 	public Long getId() {
 		return id;

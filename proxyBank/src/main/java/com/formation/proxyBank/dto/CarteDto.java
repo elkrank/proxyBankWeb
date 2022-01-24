@@ -5,6 +5,17 @@ public class CarteDto {
 	private String typeCarte;
 	private Long idClient;
 
+
+	public CarteDto(){
+
+	}
+
+	public CarteDto(String numeroDeCarte,String typeDeCarte,Long Idclient){
+		this.idClient = Idclient;
+		this.numero = numeroDeCarte;
+		this.typeCarte = typeDeCarte;
+	}
+
 	public String getNumero() {
 		return numero;
 	}
