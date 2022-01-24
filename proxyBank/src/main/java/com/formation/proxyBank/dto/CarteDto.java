@@ -9,7 +9,6 @@ public class CarteDto {
 	public CarteDto(){
 
 	}
-
 	public CarteDto(String numeroDeCarte,String typeDeCarte,Long Idclient){
 		this.idClient = Idclient;
 		this.numero = numeroDeCarte;
@@ -17,26 +16,32 @@ public class CarteDto {
 	}
 
 	public String getNumero() {
+
 		return numero;
 	}
 
 	public void setNumero(String numero) {
+
 		this.numero = numero;
 	}
 
 	public String getTypeCarte() {
+
 		return typeCarte;
 	}
 
-	public void setTypeCarte(String typeCarte) {
-		this.typeCarte = typeCarte;
+	public void setTypeCarte(String typeDeCarte) {
+
+		this.typeCarte = typeDeCarte;
 	}
 
 	public Long getIdClient() {
+
 		return idClient;
 	}
 
 	public void setIdClient(Long idClient) {
+
 		this.idClient = idClient;
 	}
 

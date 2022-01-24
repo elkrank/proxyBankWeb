@@ -72,25 +72,62 @@ import com.formation.proxyBank.service.ClientService;
 		@CrossOrigin
 		@PostMapping("/clients/fullregister/")
 		public void fullRegister( @RequestBody FullRegisterDto fullRegisterDto){
-			ClientDto clientDto = new ClientDto(fullRegisterDto.getNom(),fullRegisterDto.getPrenom(),
-										fullRegisterDto.getAdresse(),fullRegisterDto.getCodePostal()
-										,fullRegisterDto.getTelephone());
+			String nom = fullRegisterDto.getNom();
+			String prenom = fullRegisterDto.getPrenom();
+			String adresse = fullRegisterDto.getAdresse();
+			int codePostal = fullRegisterDto.getCodePostal();
+			String telephone = fullRegisterDto.getTelephone();
+
+			ClientDto clientDto = new ClientDto();
+			clientDto.setNom(nom);
+			clientDto.setPrenom(prenom);
+			clientDto.setAdresse(adresse);
+			clientDto.setCodePostal(codePostal);
+			clientDto.setTelephone(telephone);
+			System.out.println("registerdto in controller");
+			System.out.println(fullRegisterDto.getNom());
+			System.out.println(fullRegisterDto.getAdresse());
+			System.out.println(fullRegisterDto.getPrenom());
+			System.out.println(fullRegisterDto.getNumeroCompteCourrant());
+			System.out.println(fullRegisterDto.getSoldeCompteEpargne());
+
+			System.out.println("dto in controller");
+			System.out.println(clientDto.getAdresse());
+			System.out.println(clientDto.getPrenom());
+			System.out.println(clientDto.getNom());
+			System.out.println(clientDto.getTelephone());
 
 			Client  client = clientService.createClient(clientDto);
 
 			Long clientID = client.getId();
-
+			System.out.println("clientID");
+			System.out.println(clientID);
 
 
 
 			CompteCourrant compteCourrant = new CompteCourrant(fullRegisterDto.getNumeroCompteCourrant(),fullRegisterDto.getSoldeCompteCourrant(),client);
 			compteCourrantService.creercompteCourrant(compteCourrant.getNumeroDeCompte(),compteCourrant.getSolde(),clientID);
+			System.out.println("comptecourant");
+			System.out.println(compteCourrant);
 
 			CompteEpargne compteEpargne = new CompteEpargne(fullRegisterDto.getNumeroCompteEpargne(),fullRegisterDto.getSoldeCompteEpargne(),client);
 			compteEpargneService.createCompteEpargne(compteEpargne.getNumeroDeCompte(),compteEpargne.getSolde(),clientID);
+			System.out.println("compte epargne");
+			System.out.println(compteEpargne);
 
-			CarteDto carteDto =  new CarteDto(fullRegisterDto.getNumeroDeCarte(),fullRegisterDto.getTypeDeCarte(),clientID);
+			System.out.println("carte");
+			String typeCarte = fullRegisterDto.getTypeDeCarte();
+			String numero = fullRegisterDto.getNumeroDeCarte();
+
+			CarteDto carteDto =  new CarteDto();
+
+			carteDto.setIdClient(clientID);
+			carteDto.setTypeCarte(typeCarte);
+			carteDto.setNumero(numero);
+			System.out.println(typeCarte);
 			carteService.createCarte(carteDto,clientID);
+			System.out.println(carteService.createCarte(carteDto,clientID));
+
 
 		}
 }

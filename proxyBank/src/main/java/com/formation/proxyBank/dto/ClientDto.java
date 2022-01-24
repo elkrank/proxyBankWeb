@@ -6,7 +6,9 @@ public class ClientDto {
 	private String adresse;
 	private String telephone;
 	private int codePostal;
+	public ClientDto(){
 
+	}
 	public ClientDto(String nom, String prenom, String adresse, int codePostal, String telephone) {
 	}
 
