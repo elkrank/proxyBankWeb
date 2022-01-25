@@ -14,22 +14,28 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @DiscriminatorValue("Conseiller")
 
 public class Conseiller extends Employe {
-	@ManyToOne 
+	@ManyToOne
 	@JsonIgnore
 	private Agence agence;
-	
+
 	@OneToMany(mappedBy = "conseiller")
-	private  List<Client> clients = new ArrayList<Client>();
-	
-	public Conseiller(String username,String email,String password,String nom,String prenom){super(username, email, password,nom,prenom);}
+	private List<Client> clients = new ArrayList<Client>();
+
+	public Conseiller(String username, String email, String password, String nom, String prenom) {
+		super(username, email, password, nom, prenom);
+	}
 
 	public Conseiller(String nom, String prenom) {
 		super(nom, prenom);
 	}
-	public Conseiller(String username,String email,String password){super(username, email, password);}
+
+	public Conseiller(String username, String email, String password) {
+		super(username, email, password);
+	}
+
 	public Conseiller() {
 	}
-	
+
 	public List<Client> getClients() {
 		return clients;
 	}
@@ -45,7 +51,5 @@ public class Conseiller extends Employe {
 	public void setAgence(Agence agence) {
 		this.agence = agence;
 	}
-	
-	
-	
+
 }
