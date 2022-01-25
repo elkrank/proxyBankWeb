@@ -4,7 +4,13 @@ import org.springframework.stereotype.Repository;
 
 import com.formation.proxyBank.entities.Directeur;
 
+import java.util.List;
+
 @Repository
 public interface DirecteurRepository extends JpaRepository<Directeur, Long> {
+
+
+
+    List<Directeur> findByAgenceIsNull();
 
 }

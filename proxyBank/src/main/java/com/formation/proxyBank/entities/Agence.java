@@ -28,6 +28,8 @@ public class Agence {
 	@JsonIgnore
 	private Directeur directeur;
 
+
+
 	public Directeur getDirecteur() {
 		return directeur;
 	}

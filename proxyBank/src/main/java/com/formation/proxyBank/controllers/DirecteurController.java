@@ -3,6 +3,7 @@ package com.formation.proxyBank.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import com.formation.proxyBank.repositories.DirecteurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,8 @@ public class DirecteurController {
 
 	@Autowired
 	DirecteurService directeurService;
-
+	@Autowired
+	DirecteurRepository directeurRepository;
 	@CrossOrigin
 	@PostMapping
 	public Directeur createDirecteur(Directeur directeur) {
@@ -52,4 +54,9 @@ public class DirecteurController {
 		directeurService.updateDirecteur(id, directeur);
 	}
 
+
+	@GetMapping("/check/noagency")
+	public List<Directeur> directorNoAgency(){
+		return  directeurRepository.findByAgenceIsNull();
+	}
 }
