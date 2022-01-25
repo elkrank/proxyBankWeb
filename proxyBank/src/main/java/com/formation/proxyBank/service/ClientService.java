@@ -3,6 +3,8 @@ package com.formation.proxyBank.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.formation.proxyBank.entities.CompteCourrant;
+import com.formation.proxyBank.entities.CompteEpargne;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,12 @@ import com.formation.proxyBank.repositories.ClientRepository;
 public class ClientService {
 	@Autowired
 	ClientRepository clientRepository;
+	@Autowired
+	CompteService compteService;
+	@Autowired
+	CompteCourrantService compteCourrantService;
+	@Autowired
+	CompteEpargneService compteEpargneService;
 
 	public Client createClient(ClientDto dto) {
 		Client client = new Client();
@@ -37,8 +45,21 @@ public class ClientService {
 	}
 	
 	public String deleteClient(Long id)  {
-		clientRepository.deleteById(id);
-		return "Le client a bien été supprimé";
+
+		Client client = clientRepository.getById(id);
+
+		CompteCourrant compteCourrant =client.getCompteCourrant();
+
+		CompteEpargne compteEpargne = client.getCompteEpargne();
+
+		if(compteCourrant.getSolde()<=0 && compteEpargne.getSolde() ==0){
+			compteCourrantService.deleteCompteCourrant(compteCourrant.getId());
+			compteEpargneService.deleteCompteEpargne(compteEpargne.getId());
+			clientRepository.deleteById(id);
+			return "Le client a bien été supprimé";
+		}else{
+			return "Le client n'a pas ses comptes à zéro la suppression est impossible, vérifier les soldes des comptes";
+		}
 	}
 
 	public Client updateClient(Long id, Client ClientUpdate) {
