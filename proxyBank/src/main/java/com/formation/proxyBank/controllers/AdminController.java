@@ -9,6 +9,7 @@ import com.formation.proxyBank.entities.Admin;
 import com.formation.proxyBank.service.AdminService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Api(tags = "Admin", description = " ")
 @RestController
@@ -17,6 +18,7 @@ public class AdminController {
 	AdminService adminService;
 
 	@CrossOrigin
+	@ApiOperation(value = "Récupération de tous les administrateurs")
 	@GetMapping("/admin")
 	public List<Admin> getAllAdmin() {
 		return adminService.getAllAdmin();

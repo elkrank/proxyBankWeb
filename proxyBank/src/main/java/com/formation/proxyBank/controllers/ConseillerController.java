@@ -11,6 +11,7 @@ import com.formation.proxyBank.entities.Conseiller;
 import com.formation.proxyBank.service.ConseillerService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Api(tags = "Conseiller", description = " ")
 @RestController
@@ -26,6 +27,7 @@ public class ConseillerController {
 	}
 
 	@CrossOrigin
+	@ApiOperation(value = "Récupération de tous les conseillers")
 	@GetMapping
 	public List<Conseiller> findAllConseillers() {
 

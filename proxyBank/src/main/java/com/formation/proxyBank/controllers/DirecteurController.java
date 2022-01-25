@@ -10,6 +10,7 @@ import com.formation.proxyBank.entities.Directeur;
 import com.formation.proxyBank.service.DirecteurService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Api(tags = "Directeur", description = " ")
 @RestController
@@ -26,6 +27,7 @@ public class DirecteurController {
 	}
 
 	@CrossOrigin
+	@ApiOperation(value = "Récupération de tous les directeurs")
 	@GetMapping
 	public List<Directeur> findAllDirecteurs() {
 		return directeurService.listerDirecteur();

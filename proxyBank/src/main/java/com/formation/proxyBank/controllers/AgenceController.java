@@ -10,6 +10,7 @@ import com.formation.proxyBank.entities.Agence;
 import com.formation.proxyBank.service.AgenceService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Api(tags = "Agence", description = " ")
 @RestController
@@ -25,6 +26,7 @@ public class AgenceController {
 	}
 
 	@CrossOrigin
+	@ApiOperation(value = "Récupération de toutes les agences")
 	@GetMapping("/agences/{id}/")
 	@ResponseBody
 	public Agence getAgenceById(@PathVariable Long id) {
@@ -43,6 +45,13 @@ public class AgenceController {
 	@PutMapping("/agences/{id_agence}/ajouterEmploye/{idEmploye}")
 	public Agence addEmployeToAgence(@PathVariable Long id_agence, @PathVariable Long idEmploye) {
 		Agence agence = agenceService.addEmployeToAgence(id_agence, idEmploye);
+		return agence;
+	}
+
+	@CrossOrigin
+	@PutMapping("/agences/{id_agence}/associer/{idDirecteur}")
+	public Agence associateDirecteurToAgence(@PathVariable Long id_agence, @PathVariable Long idDirecteur) {
+		Agence agence = agenceService.associateDirecteurToAgence(id_agence, idDirecteur);
 		return agence;
 	}
 
