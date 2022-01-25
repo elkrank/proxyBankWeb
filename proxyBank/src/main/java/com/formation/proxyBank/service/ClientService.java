@@ -22,6 +22,8 @@ public class ClientService {
 		client.setAdresse(dto.getAdresse());
 		client.setCodePostal(dto.getCodePostal());
 		client.setTelephone(dto.getTelephone());
+		System.out.println("client service");
+		System.out.println(client);
 		return clientRepository.save(client);
 	}
 
@@ -48,6 +50,7 @@ public class ClientService {
 		client.setTelephone(ClientUpdate.getTelephone());
 		client.setCompteCourrant(ClientUpdate.getCompteCourrant());
 		client.setCompteEpargne(ClientUpdate.getCompteEpargne());
+		client.setCartes(ClientUpdate.getCartes());
 
 		return clientRepository.save(client);
 	}

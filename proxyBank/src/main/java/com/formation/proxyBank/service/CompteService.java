@@ -56,6 +56,7 @@ public class CompteService {
             if((emeteur.getSolde() - montant) > ((CompteCourrant) emeteur).getAutorisationDecouverte()){
                 emeteur.setSolde(emeteur.getSolde() - montant );
                 recepteur.setSolde(recepteur.getSolde() + montant );
+
                 compteCourrantRepository.save( (CompteCourrant) emeteur );
                 compteEpargneRepository.save( (CompteEpargne) recepteur );
             }
@@ -73,7 +74,7 @@ public class CompteService {
             }
         }
 
-        // verifier le type du compte
+
 
 
 

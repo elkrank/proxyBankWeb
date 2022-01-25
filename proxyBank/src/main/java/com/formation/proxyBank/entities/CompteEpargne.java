@@ -13,6 +13,10 @@ public class CompteEpargne extends Compte {
 
 	private Double tauxRemuneration;
 
+	public CompteEpargne(Long numeroDeCompte, Double solde, Client client){
+		super(numeroDeCompte, solde, client);
+		this.tauxRemuneration = 0.03;
+	}
 	public CompteEpargne() {
 		super();
 		this.tauxRemuneration = 0.03;

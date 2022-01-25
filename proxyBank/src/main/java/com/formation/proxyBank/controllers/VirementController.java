@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class VirementController {
+
     @Autowired
     CompteService compteService;
+
     @CrossOrigin
     @PutMapping("/virement")
     public void virement(Double montant, Long emeteur, Long recepteur){

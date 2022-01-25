@@ -17,59 +17,59 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-		// securedEnabled = true,
-		// jsr250Enabled = true,
-		prePostEnabled = true)
+        // securedEnabled = true,
+        // jsr250Enabled = true,
+        prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private AuthEntryPointJwt unauthorizedHandler;
+    @Autowired
+    private AuthEntryPointJwt unauthorizedHandler;
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-	@Bean
-	public AuthTokenFilter authenticationJwtTokenFilter() {
-		return new AuthTokenFilter();
-	}
+    @Bean
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+        return new AuthTokenFilter();
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/conseillers").hasAnyRole("ADMIN", "DIRECTEUR")
-				.antMatchers("/conseillers/comptes/*/transfer/?numerocompteBeneficiaire")
-				.hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/agences").hasRole("ADMIN")
-				.antMatchers("/agences/*").hasRole("ADMIN").antMatchers("/admin").hasRole("ADMIN")
-				.antMatchers("/admin/*").hasRole("ADMIN").antMatchers("/directeurs").hasRole("ADMIN")
-				.antMatchers("/directeurs/*").hasRole("ADMIN").antMatchers("/clients")
-				.hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/clients/*")
-				.hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/comptes")
-				.hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/comptes/*")
-				.hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/comptes-epargne")
-				.hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/comptes-epargne/*")
-				.hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/cartes")
-				.hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/cartes/*")
-				.hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/virement")
-				.hasAnyRole("ADMIN", "DIRECTEUR").antMatchers("/agences/*/ajouterEmploye/?idEmploye")
-				.hasAnyRole("ADMIN", "DIRECTEUR").antMatchers("/agences/*/employes").hasAnyRole("ADMIN", "DIRECTEUR")
-				.antMatchers("/agences/*/audit").hasAnyRole("ADMIN", "DIRECTEUR").anyRequest().permitAll();
-		// .antMatchers("/proxyBank/clients/*").hasRole("CONSEILLER");
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+                .antMatchers("/conseillers").hasAnyRole("ADMIN", "DIRECTEUR")
+                .antMatchers("/conseillers/comptes/*/transfer/?numerocompteBeneficiaire")
+                .hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/agences").hasRole("ADMIN")
+                .antMatchers("/agences/*").hasRole("ADMIN").antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/admin/*").hasRole("ADMIN").antMatchers("/directeurs").hasRole("ADMIN")
+                .antMatchers("/directeurs/*").hasRole("ADMIN").antMatchers("/clients")
+                .hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/clients/*")
+                .hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/comptes")
+                .hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/comptes/*")
+                .hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/comptes-epargne")
+                .hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/comptes-epargne/*")
+                .hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/cartes")
+                .hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/cartes/*")
+                .hasAnyRole("ADMIN", "DIRECTEUR", "CONSEILLER").antMatchers("/virement")
+                .hasAnyRole("ADMIN", "DIRECTEUR").antMatchers("/agences/*/ajouterEmploye/?idEmploye")
+                .hasAnyRole("ADMIN", "DIRECTEUR").antMatchers("/agences/*/employes").hasAnyRole("ADMIN", "DIRECTEUR")
+                .antMatchers("/agences/*/audit").hasAnyRole("ADMIN", "DIRECTEUR").anyRequest().permitAll();
+        // .antMatchers("/proxyBank/clients/*").hasRole("CONSEILLER");
 
-		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-	}
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
 
-	@Bean
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
-				"/configuration/security", "/swagger-ui.html", "/webjars/**");
-	}
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
+                "/configuration/security", "/swagger-ui.html", "/webjars/**");
+    }
 }
