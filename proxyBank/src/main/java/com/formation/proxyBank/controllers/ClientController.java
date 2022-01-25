@@ -1,5 +1,6 @@
 package com.formation.proxyBank.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -78,6 +79,9 @@ import com.formation.proxyBank.service.ClientService;
 			int codePostal = fullRegisterDto.getCodePostal();
 			String telephone = fullRegisterDto.getTelephone();
 
+			String typeCarte = fullRegisterDto.getTypeDeCarte();
+			String numero = fullRegisterDto.getNumeroDeCarte();
+
 			ClientDto clientDto = new ClientDto();
 			clientDto.setNom(nom);
 			clientDto.setPrenom(prenom);
@@ -90,7 +94,20 @@ import com.formation.proxyBank.service.ClientService;
 
 			Long clientID = client.getId();
 
+			CarteDto carteDto =  new CarteDto();
 
+
+
+			carteDto.setIdClient(clientID);
+			carteDto.setTypeCarte(typeCarte);
+			carteDto.setNumero(numero);
+			System.out.println(typeCarte);
+			Carte carte = carteService.createCarte(carteDto,clientID);
+			List<Carte> cartes = new ArrayList<Carte>();
+			cartes.add(carte);
+			client.setCartes(cartes);
+
+			clientService.updateClient(clientID,client);
 
 
 			CompteCourrant compteCourrant = new CompteCourrant(fullRegisterDto.getNumeroCompteCourrant(),fullRegisterDto.getSoldeCompteCourrant(),client);
@@ -104,16 +121,9 @@ import com.formation.proxyBank.service.ClientService;
 			System.out.println(compteEpargne);
 
 			System.out.println("carte");
-			String typeCarte = fullRegisterDto.getTypeDeCarte();
-			String numero = fullRegisterDto.getNumeroDeCarte();
 
-			CarteDto carteDto =  new CarteDto();
 
-			carteDto.setIdClient(clientID);
-			carteDto.setTypeCarte(typeCarte);
-			carteDto.setNumero(numero);
-			System.out.println(typeCarte);
-			carteService.createCarte(carteDto,clientID);
+
 
 
 

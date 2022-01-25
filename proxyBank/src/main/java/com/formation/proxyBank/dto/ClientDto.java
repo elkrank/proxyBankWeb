@@ -1,10 +1,25 @@
 package com.formation.proxyBank.dto;
 
+import com.formation.proxyBank.entities.Carte;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ClientDto {
 	private String nom;
 	private String prenom;
 	private String adresse;
 	private String telephone;
+
+	public List<Carte> getCartes() {
+		return cartes;
+	}
+
+	public void setCartes(List<Carte> cartes) {
+		this.cartes = cartes;
+	}
+
+	private List<Carte> cartes = new ArrayList<Carte>();
 	private int codePostal;
 	public ClientDto(){
 

@@ -118,6 +118,14 @@ public class Client {
 		this.compteEpargne = compteEpargne;
 	}
 
+	public List<Carte> getCartes() {
+		return cartes;
+	}
+
+	public void setCartes(List<Carte> cartes) {
+		this.cartes = cartes;
+	}
+
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", codePostal="
