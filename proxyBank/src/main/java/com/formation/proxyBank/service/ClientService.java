@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import com.formation.proxyBank.entities.CompteCourrant;
 import com.formation.proxyBank.entities.CompteEpargne;
+import com.formation.proxyBank.repositories.CompteCourrantRepository;
+import com.formation.proxyBank.repositories.CompteEpargneRepository;
+import com.formation.proxyBank.repositories.CompteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +20,11 @@ public class ClientService {
 	@Autowired
 	ClientRepository clientRepository;
 	@Autowired
-	CompteService compteService;
+	CompteRepository compteRepository;
 	@Autowired
-	CompteCourrantService compteCourrantService;
+	CompteCourrantRepository compteCourrantRepository;
 	@Autowired
-	CompteEpargneService compteEpargneService;
+	CompteEpargneRepository compteEpargneRepository;
 
 	public Client createClient(ClientDto dto) {
 		Client client = new Client();
@@ -49,15 +52,19 @@ public class ClientService {
 		Client client = clientRepository.getById(id);
 
 		CompteCourrant compteCourrant =client.getCompteCourrant();
-
+		System.out.println("client compte courrant"+compteCourrant);
 		CompteEpargne compteEpargne = client.getCompteEpargne();
-
+		System.out.println("client compte epargne"+compteEpargne);
 		if(compteCourrant.getSolde()<=0 && compteEpargne.getSolde() ==0){
-			compteCourrantService.deleteCompteCourrant(compteCourrant.getId());
-			compteEpargneService.deleteCompteEpargne(compteEpargne.getId());
+
+			compteCourrantRepository.deleteById(compteCourrant.getId());
+			System.out.println("id compte ocurrant"+compteCourrant.getId());
+			compteEpargneRepository.deleteById(compteEpargne.getId());
+			System.out.println("id compte epargne"+compteEpargne.getId());
 			clientRepository.deleteById(id);
 			return "Le client a bien été supprimé";
 		}else{
+			System.out.println("solde pas à zero enculé !!");
 			return "Le client n'a pas ses comptes à zéro la suppression est impossible, vérifier les soldes des comptes";
 		}
 	}

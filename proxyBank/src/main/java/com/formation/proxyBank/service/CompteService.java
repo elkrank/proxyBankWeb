@@ -19,6 +19,14 @@ public class CompteService {
 
     @Autowired
     CompteEpargneRepository compteEpargneRepository;
+
+
+    public void deleteCompte(Long id) {
+        compteRepository.deleteById(id);
+
+    }
+
+
     public void Virement(Double montantVirement,Long compteEmeteur, Long compteRecepteur){
 
         Compte emeteur = compteRepository.getById(compteEmeteur);
