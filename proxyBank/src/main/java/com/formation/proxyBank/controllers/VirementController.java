@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(tags = "Virement", description = " ")
@@ -18,6 +19,7 @@ public class VirementController {
 
 	@CrossOrigin
 	@PutMapping("/virement")
+	@RequestBody
 	public void virement(Double montant, Long emeteur, Long recepteur) {
 		compteService.Virement(montant, emeteur, recepteur);
 
