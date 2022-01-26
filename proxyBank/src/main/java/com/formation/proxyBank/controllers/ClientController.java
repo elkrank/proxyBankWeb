@@ -10,6 +10,7 @@ import com.formation.proxyBank.dto.FullRegisterDto;
 import com.formation.proxyBank.entities.Carte;
 import com.formation.proxyBank.entities.CompteCourrant;
 import com.formation.proxyBank.entities.CompteEpargne;
+import com.formation.proxyBank.repositories.CarteRepository;
 import com.formation.proxyBank.repositories.ClientRepository;
 import com.formation.proxyBank.service.CarteService;
 import com.formation.proxyBank.service.CompteCourrantService;
@@ -39,6 +40,8 @@ import io.swagger.annotations.Api;
 		CompteEpargneService compteEpargneService;
 		@Autowired
 		CarteService carteService;
+		@Autowired
+		CarteRepository carteRepository;
 
 
 
@@ -125,11 +128,64 @@ import io.swagger.annotations.Api;
 			System.out.println(compteEpargne);
 
 			System.out.println("carte");
+		}
+
+		@PutMapping("/clients/updateclient")
+		public void updateFullClient(@RequestBody FullRegisterDto fullRegisterDto){
+			String nom = fullRegisterDto.getNom();
+			String prenom = fullRegisterDto.getPrenom();
+			String adresse = fullRegisterDto.getAdresse();
+			int codePostal = fullRegisterDto.getCodePostal();
+			String telephone = fullRegisterDto.getTelephone();
+
+			String typeCarte = fullRegisterDto.getTypeDeCarte();
+			String numero = fullRegisterDto.getNumeroDeCarte();
+
+			ClientDto clientDto = new ClientDto();
+			clientDto.setNom(nom);
+			clientDto.setPrenom(prenom);
+			clientDto.setAdresse(adresse);
+			clientDto.setCodePostal(codePostal);
+			clientDto.setTelephone(telephone);
+
+
+			Client  client = clientService.getOneClient(fullRegisterDto.getIdClient());
+
+			Long clientID = client.getId();
+
+			CarteDto carteDto =  new CarteDto();
 
 
 
+			carteDto.setIdClient(clientID);
+			carteDto.setTypeCarte(typeCarte);
+			carteDto.setNumero(numero);
+			System.out.println(typeCarte);
+
+			Carte carte = carteService.modifyCarte(carteRepository.getCarteByIdClient(clientID),carteDto);
+			List<Carte> cartes = client.getCartes();
+			cartes.remove(0);
+			cartes.add(carte);
+			client.setCartes(cartes);
+
+			clientService.updateClient(clientID,client);
 
 
+			CompteCourrant compteCourrant = client.getCompteCourrant();
+			compteCourrant.setNumeroDeCompte(fullRegisterDto.getNumeroCompteCourrant());
+			compteCourrant.setSolde(fullRegisterDto.getSoldeCompteCourrant());
+			compteCourrantService.updateCompteCourrant(compteCourrant.getId(),compteCourrant);
+			System.out.println("comptecourant");
+			System.out.println(compteCourrant);
+
+			CompteEpargne compteEpargne = client.getCompteEpargne();
+			compteEpargne.setNumeroDeCompte(fullRegisterDto.getNumeroCompteEpargne());
+			compteEpargne.setSolde(fullRegisterDto.getSoldeCompteEpargne());
+			compteEpargneService.updateCompteEpargne(compteEpargne.getId(),compteEpargne);
+			System.out.println("compte epargne");
+			System.out.println(compteEpargne);
+
+			System.out.println("carte");
 
 		}
 }
