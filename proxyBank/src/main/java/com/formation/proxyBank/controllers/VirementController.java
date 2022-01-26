@@ -15,8 +15,8 @@ public class VirementController {
 	CompteService compteService;
 
 	@CrossOrigin
-	@PutMapping("/virement/{emeteur}")
-	public void virement(@RequestBody Double montant, Long recepteur, @PathVariable Long emeteur) {
+	@PutMapping("/virement/")
+	public void virement(@RequestBody Double montant, Long recepteur, @RequestParam Long emeteur) {
 		compteService.Virement(montant, emeteur, recepteur);
 
 	}
