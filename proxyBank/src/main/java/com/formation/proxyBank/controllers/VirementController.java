@@ -6,10 +6,7 @@ import com.formation.proxyBank.service.CompteService;
 import io.swagger.annotations.Api;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "Virement", description = " ")
 @RestController
@@ -18,8 +15,8 @@ public class VirementController {
 	CompteService compteService;
 
 	@CrossOrigin
-	@PutMapping("/virement")
-	public void virement(@RequestBody Double montant, Long emeteur, Long recepteur) {
+	@PutMapping("/virement/{emeteur}")
+	public void virement(@RequestBody Double montant, Long recepteur, @PathVariable Long emeteur) {
 		compteService.Virement(montant, emeteur, recepteur);
 
 	}
