@@ -83,7 +83,7 @@ import io.swagger.annotations.Api;
 
 			String typeCarte = fullRegisterDto.getTypeDeCarte();
 			String numero = fullRegisterDto.getNumeroDeCarte();
-
+			
 			ClientDto clientDto = new ClientDto();
 			clientDto.setNom(nom);
 			clientDto.setPrenom(prenom);
@@ -108,6 +108,8 @@ import io.swagger.annotations.Api;
 			List<Carte> cartes = new ArrayList<Carte>();
 			cartes.add(carte);
 			client.setCartes(cartes);
+			System.out.println(numero);
+			System.out.println(typeCarte);
 
 			clientService.updateClient(clientID,client);
 

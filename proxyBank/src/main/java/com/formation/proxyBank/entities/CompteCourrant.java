@@ -12,7 +12,7 @@ public class CompteCourrant extends Compte {
 	private Double autorisationDecouverte;
 
 
-
+	
 
 	public CompteCourrant(Long numeroDeCompte, Double solde, Client client) {
 		super(numeroDeCompte, solde, client);

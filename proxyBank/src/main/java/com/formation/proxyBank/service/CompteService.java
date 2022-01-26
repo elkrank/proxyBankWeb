@@ -37,14 +37,16 @@ public class CompteService {
         String typeCompteRecepteur = compteRepository.getTypeCompte(recepteur.getId());
 
         if(typeCompteEmeteur.equals("CompteCourrant")&& typeCompteRecepteur.equals("CompteCourrant")){
+        	CompteCourrant comptecourrantR = compteCourrantRepository.getById(recepteur.getId());
+        	CompteCourrant comptecourrantE = compteCourrantRepository.getById(emeteur.getId());
 
-                if((emeteur.getSolde() - montant) > ((CompteCourrant) emeteur).getAutorisationDecouverte()){
+                if((comptecourrantE.getSolde() - montant) > comptecourrantE.getAutorisationDecouverte()){
+                		
+                	comptecourrantE.setSolde(comptecourrantE.getSolde() - montant );
+                    comptecourrantR.setSolde(comptecourrantR.getSolde() + montant );
 
-                    emeteur.setSolde(emeteur.getSolde() - montant );
-                    recepteur.setSolde(recepteur.getSolde() + montant );
-
-                    compteCourrantRepository.save( (CompteCourrant) emeteur );
-                    compteCourrantRepository.save( (CompteCourrant) recepteur );
+                    compteCourrantRepository.save( comptecourrantE );
+                    compteCourrantRepository.save( comptecourrantR );
                 }
 
         }
