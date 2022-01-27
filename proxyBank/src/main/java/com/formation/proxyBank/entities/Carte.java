@@ -54,6 +54,16 @@ public class Carte {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	@Override
 	public String toString() {

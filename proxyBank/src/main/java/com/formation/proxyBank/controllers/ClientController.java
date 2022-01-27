@@ -130,6 +130,7 @@ import io.swagger.annotations.Api;
 			System.out.println("carte");
 		}
 
+		@CrossOrigin
 		@PutMapping("/clients/updateclient")
 		public void updateFullClient(@RequestBody FullRegisterDto fullRegisterDto){
 			String nom = fullRegisterDto.getNom();
@@ -161,9 +162,14 @@ import io.swagger.annotations.Api;
 			carteDto.setTypeCarte(typeCarte);
 			carteDto.setNumero(numero);
 			System.out.println(typeCarte);
-
-			Carte carte = carteService.modifyCarte(carteRepository.getCarteByIdClient(clientID),carteDto);
+			
+			Carte testCarte = carteRepository.getCarteByIdClient(clientID);
+			System.out.println("!!!!!!!!!!!!!!!!" + carteRepository.getCarteByIdClient(clientID));
+			Long idCarte = testCarte.getId();
+			
+			Carte carte = carteService.modifyCarte(idCarte,carteDto);
 			List<Carte> cartes = client.getCartes();
+			System.out.println("carte" + carte);
 			cartes.remove(0);
 			cartes.add(carte);
 			client.setCartes(cartes);
