@@ -58,8 +58,11 @@ public class ConseillerService {
 		Optional<Conseiller> conseiller = conseillerRepository.findById(conseillerId);
 		Optional<Client> client = clientRepository.findById(clientId);
 		if (conseiller.isPresent() && client.isPresent()) {
-			client.get().setConseiller(conseiller.get());
-			clientRepository.save(client.get());
+			if(conseiller.get().getClients().size() <= 10) {
+				client.get().setConseiller(conseiller.get());
+				clientRepository.save(client.get());
+
+			}
 		}
 		return conseiller;
 	}
