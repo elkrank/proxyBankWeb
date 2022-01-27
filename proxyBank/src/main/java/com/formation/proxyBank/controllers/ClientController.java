@@ -77,7 +77,7 @@ import io.swagger.annotations.Api;
 		}
 		@CrossOrigin
 		@PostMapping("/clients/fullregister/")
-		public void fullRegister( @RequestBody FullRegisterDto fullRegisterDto){
+		public Long fullRegister( @RequestBody FullRegisterDto fullRegisterDto){
 			String nom = fullRegisterDto.getNom();
 			String prenom = fullRegisterDto.getPrenom();
 			String adresse = fullRegisterDto.getAdresse();
@@ -124,10 +124,8 @@ import io.swagger.annotations.Api;
 
 			CompteEpargne compteEpargne = new CompteEpargne(fullRegisterDto.getNumeroCompteEpargne(),fullRegisterDto.getSoldeCompteEpargne(),client);
 			compteEpargneService.createCompteEpargne(compteEpargne.getNumeroDeCompte(),compteEpargne.getSolde(),clientID);
-			System.out.println("compte epargne");
-			System.out.println(compteEpargne);
-
-			System.out.println("carte");
+			
+			return clientID;
 		}
 
 		@CrossOrigin
@@ -143,6 +141,7 @@ import io.swagger.annotations.Api;
 			String numero = fullRegisterDto.getNumeroDeCarte();
 
 			ClientDto clientDto = new ClientDto();
+
 			clientDto.setNom(nom);
 			clientDto.setPrenom(prenom);
 			clientDto.setAdresse(adresse);
@@ -153,7 +152,7 @@ import io.swagger.annotations.Api;
 			Client  client = clientService.getOneClient(fullRegisterDto.getIdClient());
 			System.out.println("clientDTO :" + clientDto.getPrenom());
 			
-			client.setNom(prenom);
+			client.setNom(nom);
 			client.setPrenom(prenom);
 			client.setAdresse(adresse);
 			client.setTelephone(telephone);
@@ -171,7 +170,7 @@ import io.swagger.annotations.Api;
 			System.out.println(typeCarte);
 			
 			Carte testCarte = carteRepository.getCarteByIdClient(clientID);
-			System.out.println("!!!!!!!!!!!!!!!!" + carteRepository.getCarteByIdClient(clientID));
+
 			Long idCarte = testCarte.getId();
 			
 			Carte carte = carteService.modifyCarte(idCarte,carteDto);
@@ -188,17 +187,13 @@ import io.swagger.annotations.Api;
 			compteCourrant.setNumeroDeCompte(fullRegisterDto.getNumeroCompteCourrant());
 			compteCourrant.setSolde(fullRegisterDto.getSoldeCompteCourrant());
 			compteCourrantService.updateCompteCourrant(compteCourrant.getId(),compteCourrant);
-			System.out.println("comptecourant");
-			System.out.println(compteCourrant);
+
 
 			CompteEpargne compteEpargne = client.getCompteEpargne();
 			compteEpargne.setNumeroDeCompte(fullRegisterDto.getNumeroCompteEpargne());
 			compteEpargne.setSolde(fullRegisterDto.getSoldeCompteEpargne());
 			compteEpargneService.updateCompteEpargne(compteEpargne.getId(),compteEpargne);
-			System.out.println("compte epargne");
-			System.out.println(compteEpargne);
 
-			System.out.println("carte");
 
 		}
 }

@@ -67,7 +67,7 @@ public class CompteService {
         if(typeCompteEmeteur.equals("CompteEpargne")&& typeCompteRecepteur.equals("CompteEpargne")){
             CompteEpargne compteEpargneR = compteEpargneRepository.getById(emeteur.getId());
             CompteEpargne compteEpargneE = compteEpargneRepository.getById(recepteur.getId());
-            if((compteEpargneE.getSolde() - montant) > 0){
+            if((compteEpargneE.getSolde() - montant) >= 0){
                 compteEpargneE.setSolde(compteEpargneE.getSolde() - montant );
                 compteEpargneR.setSolde(compteEpargneR.getSolde() + montant );
 
@@ -91,7 +91,7 @@ public class CompteService {
         if(typeCompteEmeteur.equals("CompteEpargne")&& typeCompteRecepteur.equals("CompteCourrant")){
             CompteEpargne compteEpargneE = compteEpargneRepository.getById(emeteur.getId());
             CompteCourrant compteCourrantR = compteCourrantRepository.getById(recepteur.getId());
-            if((compteEpargneE.getSolde() - montant) > 0){
+            if((compteEpargneE.getSolde() - montant) >= 0){
 
                 compteEpargneE.setSolde(compteEpargneE.getSolde() - montant );
                 compteCourrantR.setSolde(compteCourrantR.getSolde() + montant );
