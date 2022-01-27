@@ -28,9 +28,15 @@ public class CompteService {
 
 
     public void Virement(Double montantVirement,Long compteEmeteur, Long compteRecepteur){
+    	
+    	System.out.println("VIREMENT SERVICE montant :"+ montantVirement +" recepeteur "+compteRecepteur+" emeteur : "+compteEmeteur );
 
         Compte emeteur = compteRepository.getById(compteEmeteur);
         Compte recepteur = compteRepository.getById(compteRecepteur);
+        
+        System.out.println("COMPTE EMETEUR : " +emeteur);
+        System.out.println("COMPTE recepteur : " +recepteur);
+        
         Double montant = montantVirement;
 
         String typeCompteEmeteur = compteRepository.getTypeCompte(emeteur.getId());
@@ -39,12 +45,20 @@ public class CompteService {
         if(typeCompteEmeteur.equals("CompteCourrant")&& typeCompteRecepteur.equals("CompteCourrant")){
         	CompteCourrant comptecourrantR = compteCourrantRepository.getById(recepteur.getId());
         	CompteCourrant comptecourrantE = compteCourrantRepository.getById(emeteur.getId());
+        	
+        	System.out.println("COMPTE EMETEUR -- avant solde : " +comptecourrantE.getSolde() );
+            System.out.println("COMPTE recepteu --:avant solde " +comptecourrantR.getSolde());
 
-                if((comptecourrantE.getSolde() - montant) > comptecourrantE.getAutorisationDecouverte()){
+            System.out.println(comptecourrantE.getSolde() - montant);
+            System.out.println(comptecourrantE.getAutorisationDecouverte());
+                if((comptecourrantE.getSolde() - montant) > -1000){
                 		
                 	comptecourrantE.setSolde(comptecourrantE.getSolde() - montant );
                     comptecourrantR.setSolde(comptecourrantR.getSolde() + montant );
 
+                	System.out.println("COMPTE EMETEUR  apres solde-- : " +comptecourrantE.getSolde());
+                    System.out.println("COMPTE recepteu  apres solde--: " +comptecourrantR.getSolde());
+                    
                     compteCourrantRepository.save( comptecourrantE );
                     compteCourrantRepository.save( comptecourrantR );
                 }
@@ -65,7 +79,7 @@ public class CompteService {
         if(typeCompteEmeteur.equals("CompteCourrant")&& typeCompteRecepteur.equals("CompteEpargne")){
             CompteCourrant compteCourrantE = compteCourrantRepository.getById(emeteur.getId());
             CompteEpargne compteEpargneR = compteEpargneRepository.getById(recepteur.getId());
-            if((compteCourrantE.getSolde() - montant) > compteCourrantE.getAutorisationDecouverte()){
+            if((compteCourrantE.getSolde() - montant) > -1000){
                 compteCourrantE.setSolde(compteCourrantE.getSolde() - montant );
                 compteEpargneR.setSolde(compteEpargneR.getSolde() + montant );
 

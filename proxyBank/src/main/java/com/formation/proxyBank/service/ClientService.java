@@ -64,13 +64,12 @@ public class ClientService {
 			clientRepository.deleteById(id);
 			return "Le client a bien été supprimé";
 		}else{
-			System.out.println("solde pas à zero enculé !!");
 			return "Le client n'a pas ses comptes à zéro la suppression est impossible, vérifier les soldes des comptes";
 		}
 	}
 
 	public Client updateClient(Long id, Client ClientUpdate) {
-		Client client = clientRepository.getById(id);
+		Client client = clientRepository.getById(ClientUpdate.getId());
 		client.setAdresse(ClientUpdate.getAdresse());
 		client.setNom(ClientUpdate.getNom());
 		client.setPrenom(ClientUpdate.getPrenom());
@@ -80,6 +79,8 @@ public class ClientService {
 		client.setCompteEpargne(ClientUpdate.getCompteEpargne());
 		client.setCartes(ClientUpdate.getCartes());
 
+		System.out.println("client" + client.getPrenom());
+		System.out.println("client update" + ClientUpdate.getPrenom());
 		return clientRepository.save(client);
 	}
 

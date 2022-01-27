@@ -151,12 +151,19 @@ import io.swagger.annotations.Api;
 
 
 			Client  client = clientService.getOneClient(fullRegisterDto.getIdClient());
-
+			System.out.println("clientDTO :" + clientDto.getPrenom());
+			
+			client.setNom(prenom);
+			client.setPrenom(prenom);
+			client.setAdresse(adresse);
+			client.setTelephone(telephone);
+			client.setCodePostal(codePostal);
+			
 			Long clientID = client.getId();
-
+			System.out.println("client : " + client.getPrenom());
 			CarteDto carteDto =  new CarteDto();
 
-
+			
 
 			carteDto.setIdClient(clientID);
 			carteDto.setTypeCarte(typeCarte);

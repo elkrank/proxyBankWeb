@@ -16,7 +16,7 @@ public class CompteCourrant extends Compte {
 
 	public CompteCourrant(Long numeroDeCompte, Double solde, Client client) {
 		super(numeroDeCompte, solde, client);
-		this.autorisationDecouverte = 1000.00;
+		this.autorisationDecouverte = -1000.00;
 	}
 
 	public CompteCourrant() {

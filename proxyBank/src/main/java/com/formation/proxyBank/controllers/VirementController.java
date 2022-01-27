@@ -15,10 +15,10 @@ public class VirementController {
 	CompteService compteService;
 
 	@CrossOrigin
-	@PutMapping("/virement/")
-
+	@PutMapping("/virement")
 	public void virement(@RequestParam Double montant, @RequestParam Long recepteur, @RequestParam Long emeteur) {
-
+		System.out.println("VIREMENT CONTROLLER montant :"+ montant +" recepeteur "+recepteur+" emeteur : "+emeteur );
+		
 		compteService.Virement(montant, emeteur, recepteur);
 
 	}
