@@ -51,36 +51,39 @@ public class CompteService {
 
         }
         if(typeCompteEmeteur.equals("CompteEpargne")&& typeCompteRecepteur.equals("CompteEpargne")){
+            CompteEpargne compteEpargneR = compteEpargneRepository.getById(emeteur.getId());
+            CompteEpargne compteEpargneE = compteEpargneRepository.getById(recepteur.getId());
+            if((compteEpargneE.getSolde() - montant) > 0){
+                compteEpargneE.setSolde(compteEpargneE.getSolde() - montant );
+                compteEpargneR.setSolde(compteEpargneR.getSolde() + montant );
 
-            if((emeteur.getSolde() - montant) > 0){
-                emeteur.setSolde(emeteur.getSolde() - montant );
-                recepteur.setSolde(recepteur.getSolde() + montant );
-
-                compteEpargneRepository.save( (CompteEpargne) emeteur );
-                compteEpargneRepository.save( (CompteEpargne) recepteur );
+                compteEpargneRepository.save(  compteEpargneE );
+                compteEpargneRepository.save(  compteEpargneR );
             }
 
         }
         if(typeCompteEmeteur.equals("CompteCourrant")&& typeCompteRecepteur.equals("CompteEpargne")){
+            CompteCourrant compteCourrantE = compteCourrantRepository.getById(emeteur.getId());
+            CompteEpargne compteEpargneR = compteEpargneRepository.getById(recepteur.getId());
+            if((compteCourrantE.getSolde() - montant) > compteCourrantE.getAutorisationDecouverte()){
+                compteCourrantE.setSolde(compteCourrantE.getSolde() - montant );
+                compteEpargneR.setSolde(compteEpargneR.getSolde() + montant );
 
-            if((emeteur.getSolde() - montant) > ((CompteCourrant) emeteur).getAutorisationDecouverte()){
-                emeteur.setSolde(emeteur.getSolde() - montant );
-                recepteur.setSolde(recepteur.getSolde() + montant );
-
-                compteCourrantRepository.save( (CompteCourrant) emeteur );
-                compteEpargneRepository.save( (CompteEpargne) recepteur );
+                compteCourrantRepository.save( compteCourrantE );
+                compteEpargneRepository.save( compteEpargneR );
             }
 
         }
         if(typeCompteEmeteur.equals("CompteEpargne")&& typeCompteRecepteur.equals("CompteCourrant")){
+            CompteEpargne compteEpargneE = compteEpargneRepository.getById(emeteur.getId());
+            CompteCourrant compteCourrantR = compteCourrantRepository.getById(recepteur.getId());
+            if((compteEpargneE.getSolde() - montant) > 0){
 
-            if((emeteur.getSolde() - montant) > 0){
+                compteEpargneE.setSolde(compteEpargneE.getSolde() - montant );
+                compteCourrantR.setSolde(compteCourrantR.getSolde() + montant );
 
-                emeteur.setSolde(emeteur.getSolde() - montant );
-                recepteur.setSolde(recepteur.getSolde() + montant );
-
-                compteEpargneRepository.save( (CompteEpargne) emeteur );
-                compteCourrantRepository.save( (CompteCourrant) recepteur );
+                compteEpargneRepository.save( compteEpargneE );
+                compteCourrantRepository.save( compteCourrantR );
             }
         }
 
